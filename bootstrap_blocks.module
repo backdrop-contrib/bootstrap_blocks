@@ -1,0 +1,311 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function bootstrap_blocks_theme($existing, $type, $theme, $path) {
+  return array(
+    'section' =>array(
+      'variables' => array(
+        'section_background' => null,
+        'section_color'      => null,
+        'section_title'      => null,
+        'first_section'      => null,
+        'second_section'     => null,
+        'third_section'      => null,
+        'section_margin'     => null, 
+        'section_padding'    => null,
+        'section_round'      => null,
+        'section_text_color' => null, 
+      ),
+    ),
+
+    'section_cards' =>array(
+      'variables' => array(
+        'section_background' => null,
+        'section_color'      => null,
+        'section_title'      => null,
+        'first_section'      => null,
+        'second_section'     => null,
+        'third_section'      => null,
+        'section_margin'     => null, 
+        'section_padding'    => null,
+        'section_round'      => null,
+        'section_text_color' => null, 
+      ),
+    ),
+
+    'tabs' =>array(
+      'variables' => array(
+        'tab_id'             => null, 
+        'tabs_padding'       => null,
+        'tabs_margin'        => null,
+        'first_tab_title'    => null,
+        'first_tab_active'   => null, 
+        'second_tab_title'   => null,
+        'second_tab_active'  => null,
+        'third_tab_title'    => null,
+        'third_tab_active'   => null,
+        'first_tab_content'  => null,
+        'second_tab_content' => null, 
+        'third_tab_content'  => null,
+        'first_tab_icon'     => null, 
+        'second_tab_icon'    => null, 
+        'third_tab_icon'     => null,
+      ),
+    ),
+
+    'tabs_card' =>array(
+      'variables' => array(
+        'tab_id'             => null,
+        'tabs_padding'       => null,
+        'tabs_margin'        => null,
+        'first_tab_title'    => null,
+        'first_tab_active'   => null, 
+        'second_tab_title'   => null,
+        'second_tab_active'  => null,
+        'third_tab_title'    => null,
+        'third_tab_active'   => null,
+        'first_tab_content'  => null,
+        'second_tab_content' => null, 
+        'third_tab_content'  => null,
+        'first_tab_icon'     => null, 
+        'second_tab_icon'    => null, 
+        'third_tab_icon'     => null,
+      ),
+    ),
+
+    'tabs_vertical' =>array(
+      'variables' => array(
+        'tab_id'             => null, 
+        'tabs_padding'       => null,
+        'tabs_margin'        => null,
+        'first_tab_title'    => null,
+        'first_tab_active'   => null, 
+        'second_tab_title'   => null,
+        'second_tab_active'  => null,
+        'third_tab_title'    => null,
+        'third_tab_active'   => null,
+        'first_tab_content'  => null,
+        'second_tab_content' => null, 
+        'third_tab_content'  => null,
+        'first_tab_icon'     => null, 
+        'second_tab_icon'    => null, 
+        'third_tab_icon'     => null,
+        'tab_background'    => null,
+      ),
+    ),
+
+    'card' =>array(
+      'variables' => array(
+        'card_title'      => null,
+        'card_content'    => null,
+        'card_padding'    => null,
+        'card_margin'     => null,
+        'card_round'      => null, 
+        'card_link_title' => null,
+        'card_link_url'   => null,
+      ),
+    ),
+
+    'two_cards' =>array(
+      'variables' => array(
+        'first_card_title'       => null,
+        'first_card_content'     => null,
+        'second_card_title'      => null,
+        'second_card_content'    => null,
+        'card_padding'           => null,
+        'card_margin'            => null,
+        'card_round'             => null, 
+        'first_card_link_title'  => null,
+        'first_card_link_url'    => null,
+        'second_card_link_title' => null,
+        'second_card_link_url'   => null,
+      ),
+    ),
+
+    'big_card' =>array(
+      'variables' => array(
+        'card_icon'       => null,
+        'card_title'      => null,
+        'card_content'    => null,
+        'card_padding'    => null,
+        'card_margin'     => null,
+        'card_round'      => null, 
+        'card_link_title' => null,
+        'card_link_url'   => null,
+      ),
+    ),
+
+    'complete_card' =>array(
+      'variables' => array(
+        'card_icon'       => null,
+        'card_icon_title' => null,
+        'card_title'      => null,
+        'card_content'    => null,
+        'card_padding'    => null,
+        'card_margin'     => null,
+        'card_round'      => null, 
+        'card_link_title' => null,
+        'card_link_url'   => null,
+      ),
+    ),
+
+    'action_card' =>array(
+      'variables' => array(
+        'card_date'      => null,
+        'card_tag'       => null,
+        'card_title'     => null,
+        'card_content'   => null,
+        'card_padding'   => null,
+        'card_margin'    => null,
+        'card_round'     => null, 
+        'card_tag_url'   => null,
+        'card_signature' => null,
+        'card_button'    => null,
+      ),
+    ),
+
+    'image_card' =>array(
+      'variables' => array(
+        'card_image_url'   => null,
+        'card_image_alt'   => null, 
+        'card_image_title' => null,
+        'card_title'       => null,
+        'card_padding'     => null,
+        'card_margin'      => null,
+        'card_link_title'  => null,
+        'card_link_url'    => null,
+      ),
+    ),
+    
+    'special_card' =>array(
+      'variables' => array(
+        'card_image_url'   => null,
+        'card_image_alt'   => null, 
+        'card_image_title' => null,
+        'card_title'       => null,
+        'card_padding'     => null,
+        'card_margin'      => null,
+        'card_link_title'  => null,
+        'card_link_url'    => null,
+        'card_date'        => null,
+      ),
+    ),
+
+    'hero' =>array(
+      'variables' => array(
+        'hero_title'            => null,
+        'hero_category'         => null,
+        'hero_content'          => null,
+        'hero_padding'          => null,
+        'hero_margin'           => null,
+        'hero_round'            => null, 
+        'hero_button_title'     => null,
+        'hero_button_url'       => null,
+        'hero_background_url'   => null, 
+        'hero_background_title' => null, 
+        'hero_background_alt'   => null,
+        'hero_card_title'       => null,
+        'hero_card_content'     => null,
+        'hero_card_link_title'  => null,
+        'hero_card_link_url'    => null,
+      ),
+    ),
+  );
+}
+
+function bootstrap_blocks_block_info() {
+  $blocks['bootstrap_blocks'] = array(
+    'info' => t('Bootstrap blocks'),
+    'description' => t('Bootstrap blocks.'),
+    'class' => 'BootstrapBlock',
+    // 'required contexts' => array('node' => 'node'),
+  );
+
+  return $blocks;
+}
+
+function bootstrap_blocks_get_children() {
+  $children = [
+    'action_card' => [
+      'info' => t('ActionCard'),
+      'description' => t('ActionCard.'),
+      'class' => 'ActionCard',
+      ],
+    'big_card' => [
+      'info' => t('BigCard'),
+      'description' => t('BigCard.'),
+      'class' => 'BigCard',
+      ],
+    'card' => [
+      'info' => t('Card'),
+      'description' => t('Card.'),
+      'class' => 'Card',
+      ],
+    'complete_card' => [
+      'info' => t('CompleteCard'),
+      'description' => t('CompleteCard.'),
+      'class' => 'Tabs',
+      ],
+    'hero' => [
+      'info' => t('Hero'),
+      'description' => t('Hero.'),
+      'class' => 'Hero',
+      ],
+    'image_card' => [
+      'info' => t('ImageCard'),
+      'description' => t('ImageCard'),
+      'class' => 'ImageCard',
+      ],
+    'section' => [
+      'info' => t('Section'),
+      'description' => t('Section.'),
+      'class' => 'Section',
+      ],
+    'section_cards' => [
+      'info' => t('SectionCards'),
+      'description' => t('SectionCards.'),
+      'class' => 'SectionCards',
+      ],
+    'special_card' => [
+      'info' => t('SpecialCard'),
+      'description' => t('SpecialCard.'),
+      'class' => 'SpecialCard',
+      ],
+    'tabs' => [
+      'info' => t('Tabs'),
+      'description' => t('Displays.'),
+      'class' => 'Tabs',
+      ],
+    'tabs_card' => [
+      'info' => t('TabsCard'),
+      'description' => t('TabsCard.'),
+      'class' => 'TabsCard',
+      ],
+    'tabs_vertical' => [
+      'info' => t('TabsVertical'),
+      'description' => t('Displays.'),
+      'class' => 'TabsVertical',
+      ],
+    'two_cards' => [
+      'info' => t('TwoCards'),
+      'description' => t('Displays.'),
+      'class' => 'TwoCards',
+      ],
+  ];
+
+  return $children;
+}
+
+/**
+ * Implements hook_autoload_info().
+ */
+function bootstrap_blocks_autoload_info() {
+  $autoload = array();
+  $autoload['BootstrapBlock'] = 'includes/BootstrapBlock.inc';
+  foreach (bootstrap_blocks_get_children() as $child) {
+    $autoload[$child['class']] = 'includes/' . $child['class'] . '.inc';
+  }
+  return $autoload;
+}
