@@ -8,7 +8,7 @@
  * admin_label = @Translation("Classic Hero, with background, and with card"),
  * )
  */
-class Hero extends BootstrapBlock {
+class Hero extends BootstrapBlocks {
   /**
    * {@inheritdoc}
    */
@@ -94,7 +94,7 @@ class Hero extends BootstrapBlock {
     ];
 
     $form['hero_content'] = [
-      '#type' => 'text area',
+      '#type' => 'textarea',
       '#title' => t('Hero text:'),
       '#description' => t('Specify the content of the hero.'),
       '#default_value' => isset($config['hero_content'])

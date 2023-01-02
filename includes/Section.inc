@@ -8,7 +8,7 @@
  * admin_label = @Translation("Section without cards"),
  * )
  */
-class Section extends BootstrapBlock {
+class Section extends BootstrapBlocks {
   /**
    * {@inheritdoc}
    */
@@ -116,7 +116,7 @@ class Section extends BootstrapBlock {
     ];
 
     $form['first_section'] = [
-      '#type' => 'text area',
+      '#type' => 'textarea',
       '#title' => t('Text of first section:'),
       '#default_value' => isset($config['first_section'])
         ? $config['first_section']
@@ -124,7 +124,7 @@ class Section extends BootstrapBlock {
     ];
 
     $form['second_section'] = [
-      '#type' => 'text area',
+      '#type' => 'textarea',
       '#title' => t('Text of the second section:'),
       '#default_value' => isset($config['second_section'])
         ? $config['second_section']
@@ -132,7 +132,7 @@ class Section extends BootstrapBlock {
     ];
 
     $form['third_section'] = [
-      '#type' => 'text area',
+      '#type' => 'textarea',
       '#title' => t('Text of the third section:'),
       '#default_value' => isset($config['third_section'])
         ? $config['third_section']

@@ -164,6 +164,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_signature' => null,
         'card_button'    => null,
       ),
+      'template' => 'templates/action-card',
     ),
 
     'image_card' =>array(
@@ -303,6 +304,7 @@ function bootstrap_blocks_get_children() {
  */
 function bootstrap_blocks_autoload_info() {
   $autoload = array();
+  $autoload['BootstrapBlocks'] = 'includes/BootstrapBlocks.inc';
   $autoload['BootstrapBlock'] = 'includes/BootstrapBlock.inc';
   foreach (bootstrap_blocks_get_children() as $child) {
     $autoload[$child['class']] = 'includes/' . $child['class'] . '.inc';

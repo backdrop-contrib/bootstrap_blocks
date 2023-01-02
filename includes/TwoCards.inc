@@ -8,7 +8,7 @@
  * admin_label = @Translation("Double card"),
  * )
  */
-class TwoCards extends BootstrapBlock {
+class TwoCards extends BootstrapBlocks {
   /**
    * {@inheritdoc}
    */
@@ -80,7 +80,7 @@ class TwoCards extends BootstrapBlock {
     ];
 
     $form['first_card_content'] = [
-      '#type' => 'text area',
+      '#type' => 'textarea',
       '#title' => t('Text of the first card:'),
       '#default_value' => isset($config['first_card_content'])
         ? $config['first_card_content']
@@ -113,7 +113,7 @@ class TwoCards extends BootstrapBlock {
     ];
 
     $form['second_card_content'] = [
-      '#type' => 'text area',
+      '#type' => 'textarea',
       '#title' => t('Text of the second card:'),
       '#default_value' => isset($config['second_card_content'])
         ? $config['second_card_content']

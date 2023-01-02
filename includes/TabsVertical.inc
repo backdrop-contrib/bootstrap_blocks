@@ -8,7 +8,7 @@
  * admin_label = @Translation("Vertical Tabs"),
  * )
  */
-class TabsVertical extends BootstrapBlock {
+class TabsVertical extends BootstrapBlocks {
   /**
    * {@inheritdoc}
    */
@@ -81,7 +81,7 @@ class TabsVertical extends BootstrapBlock {
     ];
 
     $form['first_tab_content'] = [
-      '#type' => 'text area',
+      '#type' => 'textarea',
       '#title' => t('Text of first tab:'),
       '#description' => t(
         'Specify the content of the first section of the tab.'
@@ -123,7 +123,7 @@ class TabsVertical extends BootstrapBlock {
     ];
 
     $form['second_tab_content'] = [
-      '#type' => 'text area',
+      '#type' => 'textarea',
       '#title' => t('Text of second tab:'),
       '#description' => t(
         'Specify the content of the second section of the tab.'
@@ -165,7 +165,7 @@ class TabsVertical extends BootstrapBlock {
     ];
 
     $form['third_tab_content'] = [
-      '#type' => 'text area',
+      '#type' => 'textarea',
       '#title' => t('Text of third tab:'),
       '#description' => t(
         'Specify the content of the third section of the tab.'

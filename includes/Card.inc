@@ -8,7 +8,7 @@
  * admin_label = @Translation("Card"),
  * )
  */
-class Card extends BootstrapBlock {
+class Card extends BootstrapBlocks {
 
   /**
    * {@inheritdoc}
@@ -57,7 +57,7 @@ class Card extends BootstrapBlock {
     ];
 
     $form['card_content'] = [
-      '#type' => 'text area',
+      '#type' => 'textarea',
       '#title' => t('Card text:'),
       '#default_value' => isset($config['card_content']) ? $config['card_content'] : $card_content,
     ];

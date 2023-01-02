@@ -8,7 +8,7 @@
  * admin_label = @Translation("Special card with image"),
  * )
  */
-class SpecialCard extends BootstrapBlock {
+class SpecialCard extends BootstrapBlocks {
   /**
    * {@inheritdoc}
    */

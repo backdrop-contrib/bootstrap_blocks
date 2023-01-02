@@ -11,13 +11,6 @@ class BootstrapBlock extends Block {
   protected $page_title = '';
 
   /**
-   * Special function for PageComponents. Sets the page title to be used.
-   */
-  function setPageTitle($page_title) {
-    $this->page_title = $page_title;
-  }
-
-  /**
    * {@inheritdoc}
    */
   function getAdminTitle() {
@@ -34,18 +27,14 @@ class BootstrapBlock extends Block {
    * {@inheritdoc}
    */
   function getContent() {
-    if ($this->childDelta == 'title_combo' || $this->childDelta == 'title' && isset($this->page_title)) {
-      $this->settings['title'] = $this->page_title;
-    }
 
-    $output = theme('page_components', array('child_delta' => $this->childDelta, 'settings' => $this->settings));
+    $children = $this->getChildren();
+    $child = $children[$this->childDelta]['class'];
 
-    // Check for any non-space contents. A hidden page title may show nothing
-    // at all and the whole block should be hidden in such a case.
-    if (strlen(trim($output)) === 0) {
-      return NULL;
-    }
-    return $output;;
+    $class = new $child();
+    $class->settings = $this->settings;
+
+    return $class->getContent();
   }
 
   /**
@@ -53,11 +42,11 @@ class BootstrapBlock extends Block {
    */
   function form(&$form, &$form_state) {
     parent::form($form, $form_state);
-    $form['title_display']['#access'] = FALSE;
+
     $children = $this->getChildren();
     $child = $children[$this->childDelta]['class'];
 
-    $class = new $child('bootsrap_blocks:bootstrap_blocks' . $this->childDelta);
+    $class = new $child();
     $class->form($form, $form_state);
 
   }
@@ -68,20 +57,12 @@ class BootstrapBlock extends Block {
   function formSubmit($form, &$form_state) {
     parent::formSubmit($form, $form_state);
 
-    // This block never displays a block title, as it would result in things
-    // like a title on the title component.
-    $this->settings['title_display'] = LAYOUT_TITLE_NONE;
-    $this->settings['title'] = '';
+    $children = $this->getChildren();
+    $child = $children[$this->childDelta]['class'];
 
-    if (isset($form_state['values']['title_wrapper']['title_tag'])) {
-      $this->settings['title_tag'] = $form_state['values']['title_wrapper']['title_tag'];
-    }
-    if (isset($form_state['values']['title_wrapper']['title_classes'])) {
-      $this->settings['title_classes'] = $form_state['values']['title_wrapper']['title_classes'];
-    }
-    if (isset($form_state['values']['tabs']['tab_type'])) {
-      $this->settings['tab_type'] = $form_state['values']['tabs']['tab_type'];
-    }
+    $class = new $child();
+    $class->formSubmit($form, $form_state);
+    $this->settings += $class->settings;
   }
 
   /**
