@@ -217,16 +217,12 @@ class Hero extends BootstrapBlocks {
     $this->settings['hero_button_title'] = $values['hero_button_title'];
     $this->settings['hero_button_url'] = $values['hero_button_url'];
     $this->settings['hero_category'] = $values['hero_category'];
-    $this->settings['hero_background_url'] =
-      $values['hero_background_url'];
-    $this->settings['hero_background_alt'] =
-      $values['hero_background_alt'];
-    $this->settings['hero_background_title'] =
-      $values['hero_background_title'];
+    $this->settings['hero_background_url'] = $values['hero_background_url'];
+    $this->settings['hero_background_alt'] = $values['hero_background_alt'];
+    $this->settings['hero_background_title'] = $values['hero_background_title'];
     $this->settings['hero_card_title'] = $values['hero_card_title'];
     $this->settings['hero_card_content'] = $values['hero_card_content'];
-    $this->settings['hero_card_link_title'] =
-      $values['hero_card_link_title'];
+    $this->settings['hero_card_link_title'] = $values['hero_card_link_title'];
     $this->settings['hero_card_link_url'] = $values['hero_card_link_url'];
   }
 

@@ -12,7 +12,7 @@
  border-radius: <?php echo $card_round; ?>px;   <?php } ?>
 ">
         <div class="flag-icon"></div>
-        <div class="etichetta">
+        <div class="label">
           <svg class="icon">
             <use xlink:href="./themes/custom/italiagov/assets/icons/sprite.svg#<?php echo $card_icon; ?>"></use>
           </svg>

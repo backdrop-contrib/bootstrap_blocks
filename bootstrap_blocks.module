@@ -18,6 +18,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'section_round'      => null,
         'section_text_color' => null, 
       ),
+      'template' => 'templates/section',
     ),
 
     'section_cards' =>array(
@@ -33,6 +34,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'section_round'      => null,
         'section_text_color' => null, 
       ),
+      'template' => 'templates/section-cards',
     ),
 
     'tabs' =>array(
@@ -53,6 +55,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'second_tab_icon'    => null, 
         'third_tab_icon'     => null,
       ),
+      'template' => 'templates/tabs',
     ),
 
     'tabs_card' =>array(
@@ -73,6 +76,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'second_tab_icon'    => null, 
         'third_tab_icon'     => null,
       ),
+      'template' => 'templates/tabs-card',
     ),
 
     'tabs_vertical' =>array(
@@ -94,6 +98,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'third_tab_icon'     => null,
         'tab_background'    => null,
       ),
+      'template' => 'templates/tabs-vertical',
     ),
 
     'card' =>array(
@@ -106,6 +111,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_link_title' => null,
         'card_link_url'   => null,
       ),
+      'template' => 'templates/card',
     ),
 
     'two_cards' =>array(
@@ -122,6 +128,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'second_card_link_title' => null,
         'second_card_link_url'   => null,
       ),
+      'template' => 'templates/two-cards',
     ),
 
     'big_card' =>array(
@@ -135,6 +142,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_link_title' => null,
         'card_link_url'   => null,
       ),
+      'template' => 'templates/big-card',
     ),
 
     'complete_card' =>array(
@@ -149,6 +157,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_link_title' => null,
         'card_link_url'   => null,
       ),
+      'template' => 'templates/complete-card',
     ),
 
     'action_card' =>array(
@@ -178,6 +187,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_link_title'  => null,
         'card_link_url'    => null,
       ),
+      'template' => 'templates/image-card',
     ),
     
     'special_card' =>array(
@@ -192,6 +202,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_link_url'    => null,
         'card_date'        => null,
       ),
+      'template' => 'templates/special-card',
     ),
 
     'hero' =>array(
@@ -212,6 +223,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'hero_card_link_title'  => null,
         'hero_card_link_url'    => null,
       ),
+      'template' => 'templates/hero',
     ),
   );
 }
@@ -247,7 +259,7 @@ function bootstrap_blocks_get_children() {
     'complete_card' => [
       'info' => t('CompleteCard'),
       'description' => t('CompleteCard.'),
-      'class' => 'Tabs',
+      'class' => 'CompleteCard',
       ],
     'hero' => [
       'info' => t('Hero'),

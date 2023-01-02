@@ -153,10 +153,7 @@ class Section extends BootstrapBlocks {
     $pageDepth = $values['page_depth'];
 
     $this->settings['page_depth'] = $values['page_depth'];
-    $this->settings['section_background'] = $helper->translatePath(
-      $values['section_background'],
-      $pageDepth
-    );
+    $this->settings['section_background'] = $values['section_background'];
     $this->settings['section_color'] = $values['section_color'];
     $this->settings['section_title'] = $values['section_title'];
     $this->settings['first_section'] = $values['first_section'];

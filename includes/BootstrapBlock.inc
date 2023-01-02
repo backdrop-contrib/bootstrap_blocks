@@ -33,7 +33,7 @@ class BootstrapBlock extends Block {
 
     $class = new $child();
     $class->settings = $this->settings;
-
+dpm($class->getContent());
     return $class->getContent();
   }
 
