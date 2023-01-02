@@ -83,33 +83,33 @@ class Card extends BootstrapBlock {
 
 
     $config = $this->settings;
-    $helper = new HelperController();
-    $values = $form_state->getValues();
+
+    $values = $form_state['values'];
     $pageDepth = $values['page_depth'];
 
-    $this->configuration['page_depth'] = $values['page_depth'];
-    $this->configuration['card_title'] = $values['card_title'];
-    $this->configuration['card_content'] = $values['card_content'];
-    $this->configuration['card_padding'] = $values['card_padding'];
-    $this->configuration['card_margin'] = $values['card_margin'];
-    $this->configuration['card_round'] = $values['card_round'];
-    $this->configuration['card_link_title'] = $values['card_link_title'];
-    $this->configuration['card_link_url'] = $values['card_link_url'];
+    $this->settings['page_depth'] = $values['page_depth'];
+    $this->settings['card_title'] = $values['card_title'];
+    $this->settings['card_content'] = $values['card_content'];
+    $this->settings['card_padding'] = $values['card_padding'];
+    $this->settings['card_margin'] = $values['card_margin'];
+    $this->settings['card_round'] = $values['card_round'];
+    $this->settings['card_link_title'] = $values['card_link_title'];
+    $this->settings['card_link_url'] = $values['card_link_url'];
   }
 
   /**
    * {@inheritdoc}
    */
-  public function build() {
+  public function getContent() {
     return [
       '#theme' => 'card',
-      '#card_title' => $this->configuration['card_title'],
-      '#card_content' => $this->configuration['card_content'],
-      '#card_padding' => $this->configuration['card_padding'],
-      '#card_margin' => $this->configuration['card_margin'],
-      '#card_round' => $this->configuration['card_round'],
-      '#card_link_title' => $this->configuration['card_link_title'],
-      '#card_link_url' => $this->configuration['card_link_url'],
+      '#card_title' => $this->settings['card_title'],
+      '#card_content' => $this->settings['card_content'],
+      '#card_padding' => $this->settings['card_padding'],
+      '#card_margin' => $this->settings['card_margin'],
+      '#card_round' => $this->settings['card_round'],
+      '#card_link_title' => $this->settings['card_link_title'],
+      '#card_link_url' => $this->settings['card_link_url'],
     ];
   }
 }

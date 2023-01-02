@@ -148,42 +148,42 @@ class Section extends BootstrapBlock {
 
 
     $config = $this->settings;
-    $helper = new HelperController();
+
     $values = $form_state['values'];
     $pageDepth = $values['page_depth'];
 
-    $this->configuration['page_depth'] = $values['page_depth'];
-    $this->configuration['section_background'] = $helper->translatePath(
+    $this->settings['page_depth'] = $values['page_depth'];
+    $this->settings['section_background'] = $helper->translatePath(
       $values['section_background'],
       $pageDepth
     );
-    $this->configuration['section_color'] = $values['section_color'];
-    $this->configuration['section_title'] = $values['section_title'];
-    $this->configuration['first_section'] = $values['first_section'];
-    $this->configuration['second_section'] = $values['second_section'];
-    $this->configuration['third_section'] = $values['third_section'];
-    $this->configuration['section_padding'] = $values['section_padding'];
-    $this->configuration['section_margin'] = $values['section_margin'];
-    $this->configuration['section_round'] = $values['section_round'];
-    $this->configuration['section_text_color'] = $values['section_text_color'];
+    $this->settings['section_color'] = $values['section_color'];
+    $this->settings['section_title'] = $values['section_title'];
+    $this->settings['first_section'] = $values['first_section'];
+    $this->settings['second_section'] = $values['second_section'];
+    $this->settings['third_section'] = $values['third_section'];
+    $this->settings['section_padding'] = $values['section_padding'];
+    $this->settings['section_margin'] = $values['section_margin'];
+    $this->settings['section_round'] = $values['section_round'];
+    $this->settings['section_text_color'] = $values['section_text_color'];
   }
 
   /**
    * {@inheritdoc}
    */
-  public function build() {
+  public function getContent() {
     return [
       '#theme' => 'section',
-      '#section_background' => $this->configuration['section_background'],
-      '#section_color' => $this->configuration['section_color'],
-      '#section_title' => $this->configuration['section_title'],
-      '#first_section' => $this->configuration['first_section'],
-      '#second_section' => $this->configuration['second_section'],
-      '#third_section' => $this->configuration['third_section'],
-      '#section_padding' => $this->configuration['section_padding'],
-      '#section_margin' => $this->configuration['section_margin'],
-      '#section_round' => $this->configuration['section_round'],
-      '#section_text_color' => $this->configuration['section_text_color'],
+      '#section_background' => $this->settings['section_background'],
+      '#section_color' => $this->settings['section_color'],
+      '#section_title' => $this->settings['section_title'],
+      '#first_section' => $this->settings['first_section'],
+      '#second_section' => $this->settings['second_section'],
+      '#third_section' => $this->settings['third_section'],
+      '#section_padding' => $this->settings['section_padding'],
+      '#section_margin' => $this->settings['section_margin'],
+      '#section_round' => $this->settings['section_round'],
+      '#section_text_color' => $this->settings['section_text_color'],
     ];
   }
 }

@@ -145,47 +145,47 @@ class TwoCards extends BootstrapBlock {
 
 
     $config = $this->settings;
-    $helper = new HelperController();
-    $values = $form_state->getValues();
+
+    $values = $form_state['values'];
     $pageDepth = $values['page_depth'];
 
-    $this->configuration['page_depth'] = $values['page_depth'];
-    $this->configuration['first_card_title'] = $values['first_card_title'];
-    $this->configuration['first_card_content'] = $values['first_card_content'];
-    $this->configuration['second_card_title'] = $values['second_card_title'];
-    $this->configuration['second_card_content'] =
+    $this->settings['page_depth'] = $values['page_depth'];
+    $this->settings['first_card_title'] = $values['first_card_title'];
+    $this->settings['first_card_content'] = $values['first_card_content'];
+    $this->settings['second_card_title'] = $values['second_card_title'];
+    $this->settings['second_card_content'] =
       $values['second_card_content'];
-    $this->configuration['card_padding'] = $values['card_padding'];
-    $this->configuration['card_margin'] = $values['card_margin'];
-    $this->configuration['card_round'] = $values['card_round'];
-    $this->configuration['first_card_link_title'] =
+    $this->settings['card_padding'] = $values['card_padding'];
+    $this->settings['card_margin'] = $values['card_margin'];
+    $this->settings['card_round'] = $values['card_round'];
+    $this->settings['first_card_link_title'] =
       $values['first_card_link_title'];
-    $this->configuration['first_card_link_url'] =
+    $this->settings['first_card_link_url'] =
       $values['first_card_link_url'];
-    $this->configuration['second_card_link_title'] =
+    $this->settings['second_card_link_title'] =
       $values['second_card_link_title'];
-    $this->configuration['second_card_link_url'] =
+    $this->settings['second_card_link_url'] =
       $values['second_card_link_url'];
   }
 
   /**
    * {@inheritdoc}
    */
-  public function build() {
+  public function getContent() {
     return [
       '#theme' => 'two_cards',
-      '#first_card_title' => $this->configuration['first_card_title'],
-      '#first_card_content' => $this->configuration['first_card_content'],
-      '#second_card_title' => $this->configuration['second_card_title'],
-      '#second_card_content' => $this->configuration['second_card_content'],
-      '#card_padding' => $this->configuration['card_padding'],
-      '#card_margin' => $this->configuration['card_margin'],
-      '#card_round' => $this->configuration['card_round'],
-      '#first_card_link_title' => $this->configuration['first_card_link_title'],
-      '#first_card_link_url' => $this->configuration['first_card_link_url'],
+      '#first_card_title' => $this->settings['first_card_title'],
+      '#first_card_content' => $this->settings['first_card_content'],
+      '#second_card_title' => $this->settings['second_card_title'],
+      '#second_card_content' => $this->settings['second_card_content'],
+      '#card_padding' => $this->settings['card_padding'],
+      '#card_margin' => $this->settings['card_margin'],
+      '#card_round' => $this->settings['card_round'],
+      '#first_card_link_title' => $this->settings['first_card_link_title'],
+      '#first_card_link_url' => $this->settings['first_card_link_url'],
       '#second_card_link_title' =>
-        $this->configuration['second_card_link_title'],
-      '#second_card_link_url' => $this->configuration['second_card_link_url'],
+        $this->settings['second_card_link_title'],
+      '#second_card_link_url' => $this->settings['second_card_link_url'],
     ];
   }
 }

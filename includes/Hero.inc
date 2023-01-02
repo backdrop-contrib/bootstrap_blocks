@@ -204,53 +204,53 @@ class Hero extends BootstrapBlock {
 
 
     $config = $this->settings;
-    $helper = new HelperController();
+
     $values = $form_state['values'];
     $pageDepth = $values['page_depth'];
 
-    $this->configuration['page_depth'] = $values['page_depth'];
-    $this->configuration['hero_title'] = $values['hero_title'];
-    $this->configuration['hero_content'] = $values['hero_content'];
-    $this->configuration['hero_padding'] = $values['hero_padding'];
-    $this->configuration['hero_margin'] = $values['hero_margin'];
-    $this->configuration['hero_round'] = $values['hero_round'];
-    $this->configuration['hero_button_title'] = $values['hero_button_title'];
-    $this->configuration['hero_button_url'] = $values['hero_button_url'];
-    $this->configuration['hero_category'] = $values['hero_category'];
-    $this->configuration['hero_background_url'] =
+    $this->settings['page_depth'] = $values['page_depth'];
+    $this->settings['hero_title'] = $values['hero_title'];
+    $this->settings['hero_content'] = $values['hero_content'];
+    $this->settings['hero_padding'] = $values['hero_padding'];
+    $this->settings['hero_margin'] = $values['hero_margin'];
+    $this->settings['hero_round'] = $values['hero_round'];
+    $this->settings['hero_button_title'] = $values['hero_button_title'];
+    $this->settings['hero_button_url'] = $values['hero_button_url'];
+    $this->settings['hero_category'] = $values['hero_category'];
+    $this->settings['hero_background_url'] =
       $values['hero_background_url'];
-    $this->configuration['hero_background_alt'] =
+    $this->settings['hero_background_alt'] =
       $values['hero_background_alt'];
-    $this->configuration['hero_background_title'] =
+    $this->settings['hero_background_title'] =
       $values['hero_background_title'];
-    $this->configuration['hero_card_title'] = $values['hero_card_title'];
-    $this->configuration['hero_card_content'] = $values['hero_card_content'];
-    $this->configuration['hero_card_link_title'] =
+    $this->settings['hero_card_title'] = $values['hero_card_title'];
+    $this->settings['hero_card_content'] = $values['hero_card_content'];
+    $this->settings['hero_card_link_title'] =
       $values['hero_card_link_title'];
-    $this->configuration['hero_card_link_url'] = $values['hero_card_link_url'];
+    $this->settings['hero_card_link_url'] = $values['hero_card_link_url'];
   }
 
   /**
    * {@inheritdoc}
    */
-  public function build() {
+  public function getContent() {
     return [
       '#theme' => 'hero',
-      '#hero_title' => $this->configuration['hero_title'],
-      '#hero_content' => $this->configuration['hero_content'],
-      '#hero_padding' => $this->configuration['hero_padding'],
-      '#hero_margin' => $this->configuration['hero_margin'],
-      '#hero_round' => $this->configuration['hero_round'],
-      '#hero_button_title' => $this->configuration['hero_button_title'],
-      '#hero_button_url' => $this->configuration['hero_button_url'],
-      '#hero_category' => $this->configuration['hero_category'],
-      '#hero_background_url' => $this->configuration['hero_background_url'],
-      '#hero_background_alt' => $this->configuration['hero_background_alt'],
-      '#hero_background_title' => $this->configuration['hero_background_title'],
-      '#hero_card_title' => $this->configuration['hero_card_title'],
-      '#hero_card_content' => $this->configuration['hero_card_content'],
-      '#hero_card_link_title' => $this->configuration['hero_card_link_title'],
-      '#hero_card_link_url' => $this->configuration['hero_card_link_url'],
+      '#hero_title' => $this->settings['hero_title'],
+      '#hero_content' => $this->settings['hero_content'],
+      '#hero_padding' => $this->settings['hero_padding'],
+      '#hero_margin' => $this->settings['hero_margin'],
+      '#hero_round' => $this->settings['hero_round'],
+      '#hero_button_title' => $this->settings['hero_button_title'],
+      '#hero_button_url' => $this->settings['hero_button_url'],
+      '#hero_category' => $this->settings['hero_category'],
+      '#hero_background_url' => $this->settings['hero_background_url'],
+      '#hero_background_alt' => $this->settings['hero_background_alt'],
+      '#hero_background_title' => $this->settings['hero_background_title'],
+      '#hero_card_title' => $this->settings['hero_card_title'],
+      '#hero_card_content' => $this->settings['hero_card_content'],
+      '#hero_card_link_title' => $this->settings['hero_card_link_title'],
+      '#hero_card_link_url' => $this->settings['hero_card_link_url'],
     ];
   }
 }

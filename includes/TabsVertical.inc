@@ -217,51 +217,51 @@ class TabsVertical extends BootstrapBlock {
 
 
     $config = $this->settings;
-    $helper = new HelperController();
-    $values = $form_state->getValues();
+
+    $values = $form_state['values'];
     $pageDepth = $values['page_depth'];
 
-    $this->configuration['page_depth'] = $values['page_depth'];
-    $this->configuration['tab_id'] = $values['tab_id'];
-    $this->configuration['tabs_padding'] = $values['tabs_padding'];
-    $this->configuration['tabs_margin'] = $values['tabs_margin'];
-    $this->configuration['first_tab_title'] = $values['first_tab_title'];
-    $this->configuration['first_tab_active'] = $values['first_tab_active'];
-    $this->configuration['second_tab_title'] = $values['second_tab_title'];
-    $this->configuration['second_tab_active'] = $values['second_tab_active'];
-    $this->configuration['third_tab_title'] = $values['third_tab_title'];
-    $this->configuration['third_tab_active'] = $values['third_tab_active'];
-    $this->configuration['first_tab_content'] = $values['first_tab_content'];
-    $this->configuration['second_tab_content'] = $values['second_tab_content'];
-    $this->configuration['third_tab_content'] = $values['third_tab_content'];
-    $this->configuration['first_tab_icon'] = $values['first_tab_icon'];
-    $this->configuration['second_tab_icon'] = $values['second_tab_icon'];
-    $this->configuration['third_tab_icon'] = $values['third_tab_icon'];
-    $this->configuration['tab_background'] = $values['tab_background'];
+    $this->settings['page_depth'] = $values['page_depth'];
+    $this->settings['tab_id'] = $values['tab_id'];
+    $this->settings['tabs_padding'] = $values['tabs_padding'];
+    $this->settings['tabs_margin'] = $values['tabs_margin'];
+    $this->settings['first_tab_title'] = $values['first_tab_title'];
+    $this->settings['first_tab_active'] = $values['first_tab_active'];
+    $this->settings['second_tab_title'] = $values['second_tab_title'];
+    $this->settings['second_tab_active'] = $values['second_tab_active'];
+    $this->settings['third_tab_title'] = $values['third_tab_title'];
+    $this->settings['third_tab_active'] = $values['third_tab_active'];
+    $this->settings['first_tab_content'] = $values['first_tab_content'];
+    $this->settings['second_tab_content'] = $values['second_tab_content'];
+    $this->settings['third_tab_content'] = $values['third_tab_content'];
+    $this->settings['first_tab_icon'] = $values['first_tab_icon'];
+    $this->settings['second_tab_icon'] = $values['second_tab_icon'];
+    $this->settings['third_tab_icon'] = $values['third_tab_icon'];
+    $this->settings['tab_background'] = $values['tab_background'];
   }
 
   /**
    * {@inheritdoc}
    */
-  public function build() {
+  public function getContent() {
     return [
       '#theme' => 'tabs_vertical',
-      '#tab_id' => $this->configuration['tab_id'],
-      '#tabs_padding' => $this->configuration['tabs_padding'],
-      '#tabs_margin' => $this->configuration['tabs_margin'],
-      '#first_tab_title' => $this->configuration['first_tab_title'],
-      '#first_tab_active' => $this->configuration['first_tab_active'],
-      '#second_tab_title' => $this->configuration['second_tab_title'],
-      '#second_tab_active' => $this->configuration['second_tab_active'],
-      '#third_tab_title' => $this->configuration['third_tab_title'],
-      '#third_tab_active' => $this->configuration['third_tab_active'],
-      '#first_tab_content' => $this->configuration['first_tab_content'],
-      '#second_tab_content' => $this->configuration['second_tab_content'],
-      '#third_tab_content' => $this->configuration['third_tab_content'],
-      '#first_tab_icon' => $this->configuration['first_tab_icon'],
-      '#second_tab_icon' => $this->configuration['second_tab_icon'],
-      '#third_tab_icon' => $this->configuration['third_tab_icon'],
-      '#tab_background' => $this->configuration['tab_background'],
+      '#tab_id' => $this->settings['tab_id'],
+      '#tabs_padding' => $this->settings['tabs_padding'],
+      '#tabs_margin' => $this->settings['tabs_margin'],
+      '#first_tab_title' => $this->settings['first_tab_title'],
+      '#first_tab_active' => $this->settings['first_tab_active'],
+      '#second_tab_title' => $this->settings['second_tab_title'],
+      '#second_tab_active' => $this->settings['second_tab_active'],
+      '#third_tab_title' => $this->settings['third_tab_title'],
+      '#third_tab_active' => $this->settings['third_tab_active'],
+      '#first_tab_content' => $this->settings['first_tab_content'],
+      '#second_tab_content' => $this->settings['second_tab_content'],
+      '#third_tab_content' => $this->settings['third_tab_content'],
+      '#first_tab_icon' => $this->settings['first_tab_icon'],
+      '#second_tab_icon' => $this->settings['second_tab_icon'],
+      '#third_tab_icon' => $this->settings['third_tab_icon'],
+      '#tab_background' => $this->settings['tab_background'],
     ];
   }
 }

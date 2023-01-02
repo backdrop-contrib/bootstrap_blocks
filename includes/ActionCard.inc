@@ -105,39 +105,39 @@ class ActionCard extends BootstrapBlock {
 
 
     $config = $this->settings;
-    $helper = new HelperController();
-    $values = $form_state->getValues();
+
+    $values = $form_state['values'];
     $pageDepth = $values['page_depth'];
 
-    $this->configuration['page_depth'] = $values['page_depth'];
-    $this->configuration['card_date'] = $values['card_date'];
-    $this->configuration['card_title'] = $values['card_title'];
-    $this->configuration['card_content'] = $values['card_content'];
-    $this->configuration['card_padding'] = $values['card_padding'];
-    $this->configuration['card_margin'] = $values['card_margin'];
-    $this->configuration['card_round'] = $values['card_round'];
-    $this->configuration['card_tag'] = $values['card_tag'];
-    $this->configuration['card_tag_url'] = $values['card_tag_url'];
-    $this->configuration['card_signature'] = $values['card_signature'];
-    $this->configuration['card_button'] = $values['card_button'];
+    $this->settings['page_depth'] = $values['page_depth'];
+    $this->settings['card_date'] = $values['card_date'];
+    $this->settings['card_title'] = $values['card_title'];
+    $this->settings['card_content'] = $values['card_content'];
+    $this->settings['card_padding'] = $values['card_padding'];
+    $this->settings['card_margin'] = $values['card_margin'];
+    $this->settings['card_round'] = $values['card_round'];
+    $this->settings['card_tag'] = $values['card_tag'];
+    $this->settings['card_tag_url'] = $values['card_tag_url'];
+    $this->settings['card_signature'] = $values['card_signature'];
+    $this->settings['card_button'] = $values['card_button'];
   }
 
   /**
    * {@inheritdoc}
    */
-  public function build() {
+  public function getContent() {
     return [
       '#theme' => 'action_card',
-      '#card_date' => $this->configuration['card_date'],
-      '#card_title' => $this->configuration['card_title'],
-      '#card_content' => $this->configuration['card_content'],
-      '#card_padding' => $this->configuration['card_padding'],
-      '#card_margin' => $this->configuration['card_margin'],
-      '#card_round' => $this->configuration['card_round'],
-      '#card_tag' => $this->configuration['card_tag'],
-      '#card_tag_url' => $this->configuration['card_tag_url'],
-      '#card_signature' => $this->configuration['card_signature'],
-      '#card_button' => $this->configuration['card_button'],
+      '#card_date' => $this->settings['card_date'],
+      '#card_title' => $this->settings['card_title'],
+      '#card_content' => $this->settings['card_content'],
+      '#card_padding' => $this->settings['card_padding'],
+      '#card_margin' => $this->settings['card_margin'],
+      '#card_round' => $this->settings['card_round'],
+      '#card_tag' => $this->settings['card_tag'],
+      '#card_tag_url' => $this->settings['card_tag_url'],
+      '#card_signature' => $this->settings['card_signature'],
+      '#card_button' => $this->settings['card_button'],
     ];
   }
 }

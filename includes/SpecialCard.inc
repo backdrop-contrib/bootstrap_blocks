@@ -117,35 +117,35 @@ class SpecialCard extends BootstrapBlock {
 
 
     $config = $this->settings;
-    $helper = new HelperController();
+
     $values = $form_state['values'];
     $pageDepth = $values['page_depth'];
 
-    $this->configuration['page_depth'] = $values['page_depth'];
-    $this->configuration['card_title'] = $values['card_title'];
-    $this->configuration['card_date'] = $values['card_date'];
-    $this->configuration['card_image_url'] = $values['card_image_url'];
-    $this->configuration['card_padding'] = $values['card_padding'];
-    $this->configuration['card_margin'] = $values['card_margin'];
-    $this->configuration['card_image_title'] = $values['card_image_title'];
-    $this->configuration['card_image_alt'] = $values['card_image_alt'];
-    $this->configuration['card_link_url'] = $values['card_link_url'];
+    $this->settings['page_depth'] = $values['page_depth'];
+    $this->settings['card_title'] = $values['card_title'];
+    $this->settings['card_date'] = $values['card_date'];
+    $this->settings['card_image_url'] = $values['card_image_url'];
+    $this->settings['card_padding'] = $values['card_padding'];
+    $this->settings['card_margin'] = $values['card_margin'];
+    $this->settings['card_image_title'] = $values['card_image_title'];
+    $this->settings['card_image_alt'] = $values['card_image_alt'];
+    $this->settings['card_link_url'] = $values['card_link_url'];
   }
 
   /**
    * {@inheritdoc}
    */
-  public function build() {
+  public function getContent() {
     return [
       '#theme' => 'special_card',
-      '#card_title' => $this->configuration['card_title'],
-      '#card_date' => $this->configuration['card_date'],
-      '#card_image_url' => $this->configuration['card_image_url'],
-      '#card_padding' => $this->configuration['card_padding'],
-      '#card_margin' => $this->configuration['card_margin'],
-      '#card_image_alt' => $this->configuration['card_image_alt'],
-      '#card_image_title' => $this->configuration['card_image_title'],
-      '#card_link_url' => $this->configuration['card_link_url'],
+      '#card_title' => $this->settings['card_title'],
+      '#card_date' => $this->settings['card_date'],
+      '#card_image_url' => $this->settings['card_image_url'],
+      '#card_padding' => $this->settings['card_padding'],
+      '#card_margin' => $this->settings['card_margin'],
+      '#card_image_alt' => $this->settings['card_image_alt'],
+      '#card_image_title' => $this->settings['card_image_title'],
+      '#card_link_url' => $this->settings['card_link_url'],
     ];
   }
 }
