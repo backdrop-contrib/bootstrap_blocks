@@ -120,8 +120,12 @@ class Tabs extends BootstrapBlocks {
     $this->settings['page_depth'] = $values['page_depth'];
     $this->settings['tabs_padding'] = $values['tabs_padding'];
     $this->settings['tabs_margin'] = $values['tabs_margin'];
+    foreach ($values['tabs'] as $index => $tab) {
+      if (empty($tab['title']) && empty($tab['content'])) {
+        unset($values['tabs'][$index]);
+      }
+    }
     $this->settings['tabs'] = array_values($values['tabs']);
-    dpm($this->settings['tabs']);
   }
 
   /**
@@ -133,18 +137,7 @@ class Tabs extends BootstrapBlocks {
       '#tab_id' => $this->settings['tab_id'],
       '#tabs_padding' => $this->settings['tabs_padding'],
       '#tabs_margin' => $this->settings['tabs_margin'],
-      '#first_tab_title' => $this->settings['first_tab_title'],
-      '#first_tab_active' => $this->settings['first_tab_active'],
-      '#second_tab_title' => $this->settings['second_tab_title'],
-      '#second_tab_active' => $this->settings['second_tab_active'],
-      '#third_tab_title' => $this->settings['third_tab_title'],
-      '#third_tab_active' => $this->settings['third_tab_active'],
-      '#first_tab_content' => $this->settings['first_tab_content'],
-      '#second_tab_content' => $this->settings['second_tab_content'],
-      '#third_tab_content' => $this->settings['third_tab_content'],
-      '#first_tab_icon' => $this->settings['first_tab_icon'],
-      '#second_tab_icon' => $this->settings['second_tab_icon'],
-      '#third_tab_icon' => $this->settings['third_tab_icon'],
+      '#tabs' => $this->settings['tabs'],
     ];
   }
 }
