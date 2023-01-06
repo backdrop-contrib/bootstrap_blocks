@@ -10,6 +10,7 @@
 class BootstrapBlocks {
   public $settings = array();
 
+
   /**
    * {@inheritdoc}
    */

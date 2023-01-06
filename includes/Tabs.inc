@@ -39,16 +39,6 @@ class Tabs extends BootstrapBlocks {
         : 1,
     ];
 
-    $form['tab_id'] = [
-      '#type' => 'textfield',
-      '#title' => t('ID of component:'),
-      '#description' => t(
-        'Enter an ID for the component so that it doesn\'t conflict with another component of the same type.'
-      ),
-      '#default_value' => isset($config['tab_id']) ? $config['tab_id'] : '',
-      '#required' => true,
-    ];
-
     $form['tabs_padding'] = [
       '#type' => 'number',
       '#title' => t('Tabs section padding:'),
@@ -70,132 +60,52 @@ class Tabs extends BootstrapBlocks {
         ? $config['tabs_margin']
         : 0,
     ];
+    if (!isset($form_state['tabs']) && empty($config['tabs'])) {
+      $tabs = $form_state['tabs'] = [['title' => '', 'content' => '']];
+    }
+    elseif (isset($form_state['tabs'])) {
+      $tabs = $form_state['tabs'];
+    }
+    elseif (isset($config['tabs'])) {
+      $tabs = $form_state['tabs'] = $config['tabs'];
+    }
+    dpm($this);
 
-    $form['first_tab_title'] = [
-      '#type' => 'textfield',
-      '#title' => t('Title of the first tab:'),
-      '#description' => t('Enter a title for the first tab.'),
-      '#default_value' => isset($config['first_tab_title'])
-        ? $config['first_tab_title']
-        : $first_tab_title,
+    $form['tabs'] = [
+      '#type' => 'container',
+      '#title' => t('Tabs'),
+       '#id' => 'bootstrap_blocks_tabs_wrapper',
     ];
+    foreach ($tabs as $index => $tab) {
+      $index++;
+      $form['tabs']['tabs' . $index] = [
+        '#type' => 'fieldset',
+        '#title' => t('Tab ' . $index),
+      ];
+      $form['tabs']['tabs' . $index]['title'] = [
+        '#type' => 'textfield',
+        '#title' => t('Title of tab ' . $index),
+        '#default_value' => $tab['title'],
+      ];
 
-    $form['first_tab_content'] = [
-      '#type' => 'textarea',
-      '#title' => t('Text of first tab:'),
-      '#description' => t(
-        'Specify the content of the first section of the tab.'
+      $form['tabs']['tabs' . $index]['content'] = [
+        '#type' => 'textarea',
+        '#rows' => 3,
+        '#title' => t('Content of tab ' . $index),
+        '#default_value' => $tab['content'],
+      ];
+    }
+    $form['add_tab'] = [
+      '#type' => 'submit',
+      '#submit' => array('bootstrap_blocks_add_tab_submit'),
+      '#value' => 'Add tab',
+      '#ajax' => array(
+        'wrapper' => 'bootstrap_blocks_tabs_wrapper',
+        'callback' => 'bootstrap_blocks_add_tab_ajax',
+        'effect' => 'slide',
       ),
-      '#default_value' => isset($config['first_tab_content'])
-        ? $config['first_tab_content']
-        : $first_tab_content,
     ];
 
-    $form['first_tab_active'] = [
-      '#type' => 'checkbox',
-      '#title' => t('Activate the first tab.'),
-      '#description' => t(
-        'Select to activate the first tab (it will remain visible but inaccessible).'
-      ),
-      '#default_value' => isset($config['first_tab_active'])
-        ? $config['first_tab_active']
-        : true,
-    ];
-
-    $form['first_tab_icon'] = [
-      '#type' => 'textfield',
-      '#title' => t('Icon of the first tab:'),
-      '#description' => t(
-        'Enter (if any) the name of the icon for this first tab.<br>It must be one that Bootstrap Italia provides.'
-      ),
-      '#default_value' => isset($config['first_tab_icon'])
-        ? $config['first_tab_icon']
-        : $first_tab_icon,
-    ];
-
-    $form['second_tab_title'] = [
-      '#type' => 'textfield',
-      '#title' => t('Second tab title:'),
-      '#description' => t('Enter a title for the second tab.'),
-      '#default_value' => isset($config['second_tab_title'])
-        ? $config['second_tab_title']
-        : $second_tab_title,
-    ];
-
-    $form['second_tab_content'] = [
-      '#type' => 'textarea',
-      '#title' => t('Text of second tab:'),
-      '#description' => t(
-        'Specify the content of the second section of the tab.'
-      ),
-      '#default_value' => isset($config['second_tab_content'])
-        ? $config['second_tab_content']
-        : $second_tab_content,
-    ];
-
-    $form['second_tab_active'] = [
-      '#type' => 'checkbox',
-      '#title' => t('Activate the second tab.'),
-      '#description' => t(
-        'Select to activate the second tab (it will remain visible but inaccessible).'
-      ),
-      '#default_value' => isset($config['second_tab_active'])
-        ? $config['second_tab_active']
-        : true,
-    ];
-
-    $form['second_tab_icon'] = [
-      '#type' => 'textfield',
-      '#title' => t('Second tab icon:'),
-      '#description' => t(
-        'Enter (if any) the name of the icon for this second tab.<br>It must be one that Bootstrap Italia provides.'
-      ),
-      '#default_value' => isset($config['second_tab_icon'])
-        ? $config['second_tab_icon']
-        : $second_tab_icon,
-    ];
-
-    $form['third_tab_title'] = [
-      '#type' => 'textfield',
-      '#title' => t('Third tab title:'),
-      '#description' => t('Enter a title for the third tab.'),
-      '#default_value' => isset($config['third_tab_title'])
-        ? $config['third_tab_title']
-        : $third_tab_title,
-    ];
-
-    $form['third_tab_content'] = [
-      '#type' => 'textarea',
-      '#title' => t('Text of third tab:'),
-      '#description' => t(
-        'Specify the content of the third section of the tab.'
-      ),
-      '#default_value' => isset($config['third_tab_content'])
-        ? $config['third_tab_content']
-        : $third_tab_content,
-    ];
-
-    $form['third_tab_active'] = [
-      '#type' => 'checkbox',
-      '#title' => t('Activate the third tab.'),
-      '#description' => t(
-        'Select to activate the third tab (it will remain visible but inaccessible).'
-      ),
-      '#default_value' => isset($config['third_tab_active'])
-        ? $config['third_tab_active']
-        : true,
-    ];
-
-    $form['third_tab_icon'] = [
-      '#type' => 'textfield',
-      '#title' => t('Third tab icon:'),
-      '#description' => t(
-        'Enter (if any) the name of the icon for this third tab.<br>It must be one that Bootstrap Italia provides.'
-      ),
-      '#default_value' => isset($config['third_tab_icon'])
-        ? $config['third_tab_icon']
-        : $third_tab_icon,
-    ];
 
   }
 
@@ -203,29 +113,15 @@ class Tabs extends BootstrapBlocks {
    * {@inheritdoc}
    */
   public function formSubmit($form, &$form_state) {
-
-
     $config = $this->settings;
 
     $values = $form_state['values'];
-    $pageDepth = $values['page_depth'];
 
     $this->settings['page_depth'] = $values['page_depth'];
-    $this->settings['tab_id'] = $values['tab_id'];
     $this->settings['tabs_padding'] = $values['tabs_padding'];
     $this->settings['tabs_margin'] = $values['tabs_margin'];
-    $this->settings['first_tab_title'] = $values['first_tab_title'];
-    $this->settings['first_tab_active'] = $values['first_tab_active'];
-    $this->settings['second_tab_title'] = $values['second_tab_title'];
-    $this->settings['second_tab_active'] = $values['second_tab_active'];
-    $this->settings['third_tab_title'] = $values['third_tab_title'];
-    $this->settings['third_tab_active'] = $values['third_tab_active'];
-    $this->settings['first_tab_content'] = $values['first_tab_content'];
-    $this->settings['second_tab_content'] = $values['second_tab_content'];
-    $this->settings['third_tab_content'] = $values['third_tab_content'];
-    $this->settings['first_tab_icon'] = $values['first_tab_icon'];
-    $this->settings['second_tab_icon'] = $values['second_tab_icon'];
-    $this->settings['third_tab_icon'] = $values['third_tab_icon'];
+    $this->settings['tabs'] = array_values($values['tabs']);
+    dpm($this->settings['tabs']);
   }
 
   /**

@@ -323,3 +323,18 @@ function bootstrap_blocks_autoload_info() {
   }
   return $autoload;
 }
+
+/**
+ * AJAX callback to update the style settings within the block configure form.
+ */
+function bootstrap_blocks_add_tab_ajax($form, $form_state) {
+  return $form['tabs'];
+}
+
+/**
+ * AJAX callback to update the style settings within the block configure form.
+ */
+function bootstrap_blocks_add_tab_submit($form, &$form_state) {
+  $form_state['tabs'][] = ['title' => '', 'content' => ''];
+  $form_state['rebuild'] = TRUE;
+}

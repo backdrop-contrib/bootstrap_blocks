@@ -8,7 +8,18 @@
  * local actions links, and messages in a block.
  */
 class BootstrapBlock extends Block {
-  protected $page_title = '';
+  public $child_class;
+
+  function __construct($plugin_name, array $data) {
+    parent::__construct($plugin_name, $data);
+
+    $children = $this->getChildren();
+    $child = $children[$this->childDelta]['class'];
+
+    $this->child_class = new $child();
+    $this->child_class->settings = $this->settings;
+  }
+
 
   /**
    * {@inheritdoc}
@@ -28,13 +39,7 @@ class BootstrapBlock extends Block {
    */
   function getContent() {
 
-    $children = $this->getChildren();
-    $child = $children[$this->childDelta]['class'];
-
-    $class = new $child();
-    $class->settings = $this->settings;
-dpm($class->getContent());
-    return $class->getContent();
+    return $this->child_class->getContent();
   }
 
   /**
@@ -43,11 +48,8 @@ dpm($class->getContent());
   function form(&$form, &$form_state) {
     parent::form($form, $form_state);
 
-    $children = $this->getChildren();
-    $child = $children[$this->childDelta]['class'];
-
-    $class = new $child();
-    $class->form($form, $form_state);
+    $this->child_class->form($form, $form_state);
+dpm($this->settings);
 
   }
 
@@ -57,12 +59,9 @@ dpm($class->getContent());
   function formSubmit($form, &$form_state) {
     parent::formSubmit($form, $form_state);
 
-    $children = $this->getChildren();
-    $child = $children[$this->childDelta]['class'];
-
-    $class = new $child();
-    $class->formSubmit($form, $form_state);
-    $this->settings += $class->settings;
+    $this->child_class->formSubmit($form, $form_state);
+    $this->settings = array_merge($this->settings, $this->child_class->settings);
+    dpm($this->settings);
   }
 
   /**
