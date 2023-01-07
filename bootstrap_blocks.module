@@ -4,6 +4,7 @@
  * Implements hook_theme().
  */
 function bootstrap_blocks_theme($existing, $type, $theme, $path) {
+  $base = array('preprocess functions' => array('bootstrap_blocks_preprocess_bblock'));
   return array(
     'section' =>array(
       'variables' => array(
@@ -19,7 +20,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'section_text_color' => null, 
       ),
       'template' => 'templates/section',
-    ),
+    ) + $base,
 
     'section_cards' =>array(
       'variables' => array(
@@ -35,22 +36,32 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'section_text_color' => null, 
       ),
       'template' => 'templates/section-cards',
-    ),
+    ) + $base,
 
     'tabs' =>array(
       'variables' => array(
-        'tab_id'             => null, 
+        'bblock_id'             => null, 
         'tabs_padding'       => null,
         'tabs_margin'        => null,
         'link_style'        => null,
         'tabs'        => array(),
       ),
       'template' => 'templates/tabs',
-    ),
+    ) + $base,
+
+    'tabs_vertical' =>array(
+      'variables' => array(
+        'bblock_id'             => null, 
+        'tabs_padding'       => null,
+        'tabs_margin'        => null,
+        'tabs'        => array(),
+      ),
+      'template' => 'templates/tabs-vertical',
+    ) + $base,
 
     'tabs_card' =>array(
       'variables' => array(
-        'tab_id'             => null,
+        'bblock_id'             => null,
         'tabs_padding'       => null,
         'tabs_margin'        => null,
         'first_tab_title'    => null,
@@ -67,17 +78,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'third_tab_icon'     => null,
       ),
       'template' => 'templates/tabs-card',
-    ),
-
-    'tabs_vertical' =>array(
-      'variables' => array(
-        'tab_id'             => null, 
-        'tabs_padding'       => null,
-        'tabs_margin'        => null,
-        'tabs'        => array(),
-      ),
-      'template' => 'templates/tabs-vertical',
-    ),
+    ) + $base,
 
     'card' =>array(
       'variables' => array(
@@ -90,7 +91,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_link_url'   => null,
       ),
       'template' => 'templates/card',
-    ),
+    ) + $base,
 
     'two_cards' =>array(
       'variables' => array(
@@ -107,7 +108,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'second_card_link_url'   => null,
       ),
       'template' => 'templates/two-cards',
-    ),
+    ) + $base,
 
     'big_card' =>array(
       'variables' => array(
@@ -121,7 +122,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_link_url'   => null,
       ),
       'template' => 'templates/big-card',
-    ),
+    ) + $base,
 
     'complete_card' =>array(
       'variables' => array(
@@ -136,7 +137,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_link_url'   => null,
       ),
       'template' => 'templates/complete-card',
-    ),
+    ) + $base,
 
     'action_card' =>array(
       'variables' => array(
@@ -152,7 +153,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_button'    => null,
       ),
       'template' => 'templates/action-card',
-    ),
+    ) + $base,
 
     'image_card' =>array(
       'variables' => array(
@@ -166,7 +167,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_link_url'    => null,
       ),
       'template' => 'templates/image-card',
-    ),
+    ) + $base,
     
     'special_card' =>array(
       'variables' => array(
@@ -181,7 +182,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_date'        => null,
       ),
       'template' => 'templates/special-card',
-    ),
+    ) + $base,
 
     'hero' =>array(
       'variables' => array(
@@ -202,7 +203,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'hero_card_link_url'    => null,
       ),
       'template' => 'templates/hero',
-    ),
+    ) + $base,
   );
 }
 
@@ -315,4 +316,17 @@ function bootstrap_blocks_add_tab_ajax($form, $form_state) {
 function bootstrap_blocks_add_tab_submit($form, &$form_state) {
   $form_state['tabs'][] = ['title' => '', 'content' => ''];
   $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * AJAX callback to update the style settings within the block configure form.
+ */
+function bootstrap_blocks_preprocess_bblock(&$variables) {
+    if (!empty($variables['bblock_id'])) {
+      $variables['bblock_id'] = strtolower(backdrop_clean_css_identifier($variables['bblock_id']));
+    }
+    else {
+      $variables['bblock_id'] = 'bblock-block';
+    }
+
 }

@@ -61,7 +61,19 @@ class BootstrapBlock extends Block {
       $this->setSettings();
     }
     $this->child_class->form($form, $form_state);
-dpm($this->settings);
+
+    $form['bblock_id_wrapper'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Bootstrap block ID'),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+    ];
+    $form['bblock_id_wrapper']['bblock_id'] = [
+      '#type' => 'textfield',
+      '#title' => t('Block ID'),
+      '#description' => t('Optional ID. Should be unique.'),
+      '#default_value' => isset($this->settings['bblock_id']) ? $this->settings['bblock_id'] : '',
+    ];
 
   }
 
@@ -73,7 +85,7 @@ dpm($this->settings);
 
     $this->child_class->formSubmit($form, $form_state);
     $this->settings = array_merge($this->settings, $this->child_class->settings);
-    dpm($this->settings);
+    $this->settings['bblock_id'] = $form_state['values']['bblock_id_wrapper']['bblock_id'];
   }
 
   /**

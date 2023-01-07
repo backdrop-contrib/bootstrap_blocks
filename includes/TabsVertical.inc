@@ -84,19 +84,6 @@ class TabsVertical extends BootstrapBlocks {
       ),
     ];
 
-    $form['tab_id_wrapper'] = [
-      '#type' => 'fieldset',
-      '#title' => t('Tab block ID'),
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-    ];
-    $form['tab_id_wrapper']['tab_id'] = [
-      '#type' => 'textfield',
-      '#title' => t('Tab ID'),
-      '#description' => t('Optional ID. Should be unique.'),
-      '#default_value' => isset($config['tab_id']) ? $config['tab_id'] : '',
-    ];
-
 
   }
 
@@ -111,7 +98,7 @@ class TabsVertical extends BootstrapBlocks {
 
     $this->settings['tabs_padding'] = $values['tabs_padding'];
     $this->settings['tabs_margin'] = $values['tabs_margin'];
-    $this->settings['tab_id'] = $values['tab_id_wrapper']['tab_id'];
+    $this->settings['bblock_id'] = $values['bblock_id_wrapper']['bblock_id'];
     foreach ($values['tabs'] as $index => $tab) {
       if (empty($tab['title']) && empty($tab['content'])) {
         unset($values['tabs'][$index]);
@@ -128,7 +115,7 @@ class TabsVertical extends BootstrapBlocks {
       '#theme' => 'tabs_vertical',
       '#tabs_padding' => $this->settings['tabs_padding'],
       '#tabs_margin' => $this->settings['tabs_margin'],
-      '#tab_id' => $this->settings['tab_id'],
+      '#bblock_id' => $this->settings['bblock_id'],
       '#tabs' => $this->settings['tabs'],
     ];
   }
