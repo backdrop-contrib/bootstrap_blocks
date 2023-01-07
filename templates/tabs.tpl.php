@@ -1,22 +1,25 @@
-<div style="
-  <?php if (($tabs_padding > 0)) { ?>
- padding: <?php echo $tabs_padding; ?>px; <?php } ?>
+<?php $tabs_padding = ($tabs_padding > 0) ? 'padding: ' . $tabs_padding . 'px': ''; ?>
+<?php $tabs_margin = ($tabs_margin > 0) ? 'margin: ' . $tabs_margin . 'px' : ''; ?>
+<?php if ($v_tabs) {
+    $v_tabs_align = 'class="d-flex align-items-start"';
+    $v_tabs_column = 'flex-column';
+  }
+  else {
+    $v_tabs_align = '';
+    $v_tabs_column = '';
+  }
+  ?>
+
+<div style="<?php echo $tabs_padding; ?> <?php echo $tabs_margin; ?>" <?php echo $v_tabs_align; ?>>
   
- 
-  <?php if (($tabs_margin > 0)) { ?>
- margin:  <?php echo $tabs_margin; ?>px;  <?php } ?>
-">
-  
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <div class="nav nav-pills <?php echo $v_tabs_column; ?>" id="myTab" role="tablist">
   <?php foreach ($tabs as $delta => $item): ?>
     <?php $active = ($delta == 0) ? 'active' : ''; ?>
-    <li class="nav-item">
       <button class="nav-link <?php echo $active; ?>" id="tab-<?php echo $delta; ?>" data-bs-toggle="tab" data-bs-target="#tab-content-<?php echo $delta; ?>" role="tab" type="button" aria-controls="tab-content-<?php echo $delta; ?>" aria-selected="true">
       <?php echo $item['title']; ?>
       </button>
-    </li>
     <?php endforeach; ?>
-  </ul>
+  </div>
 
   <div class="tab-content" id="myTabContent">
   <?php foreach ($tabs as $delta => $item): ?>

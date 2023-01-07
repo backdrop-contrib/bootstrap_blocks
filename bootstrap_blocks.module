@@ -42,6 +42,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'tab_id'             => null, 
         'tabs_padding'       => null,
         'tabs_margin'        => null,
+        'v_tabs'        => null,
         'tabs'        => array(),
       ),
       'template' => 'templates/tabs',

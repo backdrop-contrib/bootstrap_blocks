@@ -15,29 +15,6 @@ class Tabs extends BootstrapBlocks {
   public function form(&$form, &$form_state) {
 
     $config = $this->settings;
-    $first_tab_title = 'Tab 1';
-    $second_tab_title = 'Tab 2';
-    $third_tab_title = 'Tab 3';
-    $first_tab_content =
-      'Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.';
-    $second_tab_content =
-      'Eget egestas purus viverra accumsan. Diam maecenas ultricies mi eget mauris pharetra et. Etiam dignissim diam quis enim. Eu nisl nunc mi ipsum faucibus.';
-    $third_tab_content =
-      'Euismod lacinia at quis risus sed vulputate. Scelerisque purus semper eget duis at tellus at urna condimentum. Mattis enim ut tellus elementum sagittis.';
-    $first_tab_icon = 'it-link';
-    $second_tab_icon = 'it-link';
-    $third_tab_icon = 'en-link';
-
-    $form['page_depth'] = [
-      '#type' => 'number',
-      '#title' => t('Page level (only in case of other languages):'),
-      '#description' => t(
-        'For example if /page/services, the service level is 2.'
-      ),
-      '#default_value' => isset($config['page_depth'])
-        ? $config['page_depth']
-        : 1,
-    ];
 
     $form['tabs_padding'] = [
       '#type' => 'number',
@@ -60,6 +37,13 @@ class Tabs extends BootstrapBlocks {
         ? $config['tabs_margin']
         : 0,
     ];
+
+    $form['v_tabs'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Vertical tabs'),
+      '#default_value' => isset($config['v_tabs']) ? $config['v_tabs'] : 0,
+    ];
+
     if (!isset($form_state['tabs']) && empty($config['tabs'])) {
       $tabs = $form_state['tabs'] = [['title' => '', 'content' => '']];
     }
@@ -120,6 +104,7 @@ class Tabs extends BootstrapBlocks {
     $this->settings['page_depth'] = $values['page_depth'];
     $this->settings['tabs_padding'] = $values['tabs_padding'];
     $this->settings['tabs_margin'] = $values['tabs_margin'];
+    $this->settings['v_tabs'] = $values['v_tabs'];
     foreach ($values['tabs'] as $index => $tab) {
       if (empty($tab['title']) && empty($tab['content'])) {
         unset($values['tabs'][$index]);
@@ -137,6 +122,7 @@ class Tabs extends BootstrapBlocks {
       '#tab_id' => $this->settings['tab_id'],
       '#tabs_padding' => $this->settings['tabs_padding'],
       '#tabs_margin' => $this->settings['tabs_margin'],
+      '#v_tabs' => $this->settings['v_tabs'],
       '#tabs' => $this->settings['tabs'],
     ];
   }
