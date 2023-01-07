@@ -38,10 +38,14 @@ class Tabs extends BootstrapBlocks {
         : 0,
     ];
 
-    $form['v_tabs'] = [
-      '#type' => 'checkbox',
+    $form['link_style'] = [
+      '#type' => 'radios',
       '#title' => t('Vertical tabs'),
-      '#default_value' => isset($config['v_tabs']) ? $config['v_tabs'] : 0,
+      '#options' => array(
+        'buttons' => t('Buttons'),
+        'tabs' => t('Tabs'),
+      ),
+      '#default_value' => isset($config['link_style']) ? $config['link_style'] : 0,
     ];
 
     if (!isset($form_state['tabs']) && empty($config['tabs'])) {
@@ -79,6 +83,7 @@ class Tabs extends BootstrapBlocks {
         '#default_value' => $tab['content'],
       ];
     }
+
     $form['add_tab'] = [
       '#type' => 'submit',
       '#submit' => array('bootstrap_blocks_add_tab_submit'),
@@ -90,6 +95,18 @@ class Tabs extends BootstrapBlocks {
       ),
     ];
 
+    $form['tab_id_wrapper'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Tab block ID'),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+    ];
+    $form['tab_id_wrapper']['tab_id'] = [
+      '#type' => 'textfield',
+      '#title' => t('Tab ID'),
+      '#description' => t('Optional ID. Should be unique.'),
+      '#default_value' => isset($config['tab_id']) ? $config['tab_id'] : '',
+    ];
 
   }
 
@@ -100,11 +117,12 @@ class Tabs extends BootstrapBlocks {
     $config = $this->settings;
 
     $values = $form_state['values'];
+    dpm($values);
 
-    $this->settings['page_depth'] = $values['page_depth'];
     $this->settings['tabs_padding'] = $values['tabs_padding'];
     $this->settings['tabs_margin'] = $values['tabs_margin'];
-    $this->settings['v_tabs'] = $values['v_tabs'];
+    $this->settings['link_style'] = $values['link_style'];
+    $this->settings['tab_id'] = $values['tab_id_wrapper']['tab_id'];
     foreach ($values['tabs'] as $index => $tab) {
       if (empty($tab['title']) && empty($tab['content'])) {
         unset($values['tabs'][$index]);
@@ -122,7 +140,7 @@ class Tabs extends BootstrapBlocks {
       '#tab_id' => $this->settings['tab_id'],
       '#tabs_padding' => $this->settings['tabs_padding'],
       '#tabs_margin' => $this->settings['tabs_margin'],
-      '#v_tabs' => $this->settings['v_tabs'],
+      '#link_style' => $this->settings['link_style'],
       '#tabs' => $this->settings['tabs'],
     ];
   }

@@ -13,13 +13,22 @@ class BootstrapBlock extends Block {
   function __construct($plugin_name, array $data) {
     parent::__construct($plugin_name, $data);
 
+    if (isset($this->childDelta)) {
+      $this->setSettings();
+    }
+  }
+
+
+  /**
+   * {@inheritdoc}
+   */
+  function setSettings() {
     $children = $this->getChildren();
     $child = $children[$this->childDelta]['class'];
 
     $this->child_class = new $child();
     $this->child_class->settings = $this->settings;
   }
-
 
   /**
    * {@inheritdoc}
@@ -48,6 +57,9 @@ class BootstrapBlock extends Block {
   function form(&$form, &$form_state) {
     parent::form($form, $form_state);
 
+    if (empty($this->child_class)) {
+      $this->setSettings();
+    }
     $this->child_class->form($form, $form_state);
 dpm($this->settings);
 
