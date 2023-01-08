@@ -4,7 +4,10 @@
  * Implements hook_theme().
  */
 function bootstrap_blocks_theme($existing, $type, $theme, $path) {
-  $base = array('preprocess functions' => array('bootstrap_blocks_preprocess_bblock'));
+  $base = array(
+    'preprocess functions' => array('bootstrap_blocks_preprocess_bblock'),
+    'variables' => array('bblock_id' => null),
+  );
   return array(
     'section' =>array(
       'variables' => array(
@@ -36,6 +39,16 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'section_text_color' => null, 
       ),
       'template' => 'templates/section-cards',
+    ) + $base,
+
+    'accordion' =>array(
+      'variables' => array(
+        'tabs_padding'       => null,
+        'tabs_margin'        => null,
+        'always_open' => null,
+        'tabs' => array(), 
+      ),
+      'template' => 'templates/accordion',
     ) + $base,
 
     'tabs' =>array(
@@ -220,6 +233,11 @@ function bootstrap_blocks_block_info() {
 
 function bootstrap_blocks_get_children() {
   $children = [
+    'accordion' => [
+      'info' => t('Accordion'),
+      'description' => t('Accordion.'),
+      'class' => 'Accordion',
+      ],
     'action_card' => [
       'info' => t('ActionCard'),
       'description' => t('ActionCard.'),
