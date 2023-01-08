@@ -12,189 +12,161 @@ class Hero extends BootstrapBlocks {
   /**
    * {@inheritdoc}
    */
+  function __construct() {
+
+    $this->settings += array(
+      'image' => '',
+      'image_path' => '',
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function form(&$form, &$form_state) {
 
     $config = $this->settings;
-    $hero_title = 'Morbi fermentum amet';
-    $hero_category = 'Category';
-    $hero_content =
+    dpm($config);
+    $card_header = 'Morbi fermentum amet';
+    $card_title = 'Morbi fermentum amet';
+    $card_content =
       'Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.';
-    $hero_button_title = 'Read more';
-    $hero_button_url = '#';
-    $hero_background_url =
-      'https://animals.sandiegozoo.org/sites/default/files/2016-08/animals_hero_mountains.jpg';
-    $hero_background_alt = 'Background hero';
-    $hero_background_title = 'Background hero';
-    $hero_card_title =
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit';
-    $hero_card_content =
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
-    $hero_card_link_title = 'Read more';
+    $card_link_title = 'Read more';
+    $card_link_url = '#';
+    $card_icon = 'it-card';
+    $card_icon_title = 'Development';
 
-    $form['page_depth'] = [
-      '#type' => 'number',
-      '#title' => t('Page level (only in case of other languages):'),
+    $form['card_round'] = [
+      '#type' => 'select',
+      '#title' => t('Card rounding:'),
+      '#options' => array(0, 1, 2, 3),
       '#description' => t(
-        'For example if /page/services, the service level is 2.'
+        'Enter any rounding for the card border.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all edges.'
       ),
-      '#default_value' => isset($config['page_depth'])
-        ? $config['page_depth']
-        : 1,
-    ];
-
-    $form['hero_round'] = [
-      '#type' => 'number',
-      '#title' => t('Rounding of the hero:'),
-      '#description' => t(
-        'Enter any rounding for the hero in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all edges.'
-      ),
-      '#default_value' => isset($config['hero_round'])
-        ? $config['hero_round']
+      '#default_value' => isset($config['card_round'])
+        ? $config['card_round']
         : 0,
     ];
 
-    $form['hero_padding'] = [
-      '#type' => 'number',
-      '#title' => t('Padding of the hero:'),
+    $form['card_padding'] = [
+      '#type' => 'select',
+      '#title' => t('Card padding'),
+      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5, 'auto')),
       '#description' => t(
-        'Enter any padding for the hero in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all edges.'
+        'Enter any padding for the card in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all edges.'
       ),
-      '#default_value' => isset($config['hero_padding'])
-        ? $config['hero_padding']
-        : 0,
+      '#default_value' => isset($config['card_padding'])
+        ? $config['card_padding']
+        : 3,
     ];
 
-    $form['hero_margin'] = [
-      '#type' => 'number',
-      '#title' => t('Margin of hero:'),
+    $form['card_margin'] = [
+      '#type' => 'select',
+      '#title' => t('Card margin'),
+      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5, 'auto')),
       '#description' => t(
-        'Enter any margin for the hero in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all borders.'
+        'Enter any margin for the card in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all borders.'
       ),
-      '#default_value' => isset($config['hero_margin'])
-        ? $config['hero_margin']
-        : 0,
+      '#default_value' => isset($config['card_margin'])
+        ? $config['card_margin']
+        : 3,
     ];
 
-    $form['hero_category'] = [
+    $form['text_align'] = [
+      '#type' => 'select',
+      '#title' => t('Card text alignment'),
+      '#options' => array(
+        'left' => t('Left'),
+        'right' => t('Right'),
+        'center' => t('Center'),
+      ),
+      '#default_value' => isset($config['text_align'])
+        ? $config['text_align']
+        : 'left',
+    ];
+
+    $upload_validators = array(
+      'file_validate_extensions' => array('jpg jpeg png gif'),
+      'file_validate_image_resolution' => array('3200x1600', '1200x300'),
+    );
+    $upload_description = theme('file_upload_help', array(
+      'upload_validators' => $upload_validators,
+    ));
+
+    // Add an image field at the top of the settings form.
+    $form['image'] = array(
+      '#type' => 'managed_file',
+      '#title' => t('Background image'),
+      '#description' => $upload_description,
+      '#default_value' => $this->settings['image'],
+      '#upload_location' => 'public://hero/',
+      '#upload_validators' => $upload_validators,
+      '#weight' => -10,
+    );
+    // Store the image path separately.
+    $form['image_path'] = array(
+      '#type' => 'value',
+      '#value' => $this->settings['image_path'],
+    );
+
+    // Disable reusable until a later date.
+    $form['convert']['#access'] = FALSE;
+
+    $form['card_header'] = [
       '#type' => 'textfield',
-      '#title' => t('Hero category:'),
-      '#description' => t('Enter a category for this hero.'),
-      '#default_value' => isset($config['hero_category'])
-        ? $config['hero_category']
-        : $hero_category,
+      '#title' => t('Card header:'),
+      '#description' => t('Enter a header title for this card.'),
+      '#default_value' => isset($config['card_header'])
+        ? $config['card_header']
+        : $card_header,
     ];
 
-    $form['hero_title'] = [
+    $form['card_title'] = [
       '#type' => 'textfield',
-      '#title' => t('Hero title:'),
-      '#description' => t('Enter a title for this hero.'),
-      '#default_value' => isset($config['hero_title'])
-        ? $config['hero_title']
-        : $hero_title,
+      '#title' => t('Card title:'),
+      '#description' => t('Enter a title for this card.'),
+      '#default_value' => isset($config['card_title'])
+        ? $config['card_title']
+        : $card_title,
     ];
 
-    $form['hero_content'] = [
+    $form['card_title_tag'] = [
+      '#type' => 'select',
+      '#options' => backdrop_map_assoc(array('h1', 'h2', 'h3', 'h4', 'h5', 'h6')),
+      '#title' => t('Card title tag'),
+      '#description' => t('Choose title tag size.'),
+      '#default_value' => isset($config['card_title_tag'])
+        ? $config['card_title_tag']
+        : 'h5',
+    ];
+
+    $form['card_content'] = [
       '#type' => 'textarea',
-      '#title' => t('Hero text:'),
-      '#description' => t('Specify the content of the hero.'),
-      '#default_value' => isset($config['hero_content'])
-        ? $config['hero_content']
-        : $hero_content,
+      '#title' => t('Card text:'),
+      '#default_value' => isset($config['card_content'])
+        ? $config['card_content']
+        : $card_content,
+    ];
+    $form['card_footer'] = [
+      '#type' => 'textarea',
+      '#title' => t('Card text:'),
+      '#default_value' => isset($config['card_footer'])
+        ? $config['card_footer']
+        : '',
     ];
 
-    $form['hero_button_title'] = [
-      '#type' => 'textfield',
-      '#title' => t('Button title:'),
-      '#default_value' => isset($config['hero_button_title'])
-        ? $config['hero_button_title']
-        : $hero_button_title,
-    ];
+  }
 
-    $form['hero_button_url'] = [
-      '#type' => 'textfield',
-      '#title' => t('Button URL:'),
-      '#default_value' => isset($config['hero_button_url'])
-        ? $config['hero_button_url']
-        : $hero_button_url,
-    ];
 
-    $form['hero_background_url'] = [
-      '#type' => 'textfield',
-      '#title' => t('URL of background image:'),
-      '#description' => t(
-        'Specify a possible background image, otherwise the primary color will be used.'
-      ),
-      '#default_value' => isset($config['hero_background_url'])
-        ? $config['hero_background_url']
-        : $hero_background_url,
-    ];
+  /**
+   * Validates the form settings.
+   */
+  function formValidate($form, &$form_state) {
 
-    $form['hero_background_alt'] = [
-      '#type' => 'textfield',
-      '#title' => t('Alt of background image:'),
-      '#description' => t(
-        'If a background image is specified, then it is convenient to use an alt.'
-      ),
-      '#default_value' => isset($config['hero_background_alt'])
-        ? $config['hero_background_alt']
-        : $hero_background_alt,
-    ];
-
-    $form['hero_background_title'] = [
-      '#type' => 'textfield',
-      '#title' => t('Title of background image:'),
-      '#description' => t(
-        'If a background image is specified, then it is convenient to use a title.'
-      ),
-      '#default_value' => isset($config['hero_background_title'])
-        ? $config['hero_background_title']
-        : $hero_background_title,
-    ];
-
-    $form['hero_card_title'] = [
-      '#type' => 'textfield',
-      '#title' => t('Card title in hero:'),
-      '#description' => t(
-        'Enter a title for a possible card to add to the component.'
-      ),
-      '#default_value' => isset($config['hero_card_title'])
-        ? $config['hero_card_title']
-        : $hero_card_title,
-    ];
-
-    $form['hero_card_content'] = [
-      '#type' => 'textfield',
-      '#title' => t('Content of card in hero:'),
-      '#description' => t(
-        'Enter content for a possible card to add to the component.'
-      ),
-      '#default_value' => isset($config['hero_card_content'])
-        ? $config['hero_card_content']
-        : $hero_card_content,
-    ];
-
-    $form['hero_card_link_title'] = [
-      '#type' => 'textfield',
-      '#title' => t('Link title of card in hero:'),
-      '#description' => t(
-        'Enter a title for the link for a possible card to add to the component.'
-      ),
-      '#default_value' => isset($config['hero_card_link_title'])
-        ? $config['hero_card_link_title']
-        : $hero_card_link_title,
-    ];
-
-    $form['hero_card_link_url'] = [
-      '#type' => 'textfield',
-      '#title' => t('URL of card link in hero:'),
-      '#description' => t(
-        'Enter a URL for the link for a possible card to add to the component.'
-      ),
-      '#default_value' => isset($config['hero_card_link_url'])
-        ? $config['hero_card_link_url']
-        : '#',
-    ];
-
+    // Check that one of title, text, or image, is provided.
+    if (empty($form_state['values']['image']) && empty($form_state['values']['title']) && empty($form_state['values']['content']['value'])) {
+      form_error($form['image'], t('Background image, a Display title, or Block content must be provided.'));
+    }
   }
 
   /**
@@ -206,24 +178,51 @@ class Hero extends BootstrapBlocks {
     $config = $this->settings;
 
     $values = $form_state['values'];
-    $pageDepth = $values['page_depth'];
 
-    $this->settings['page_depth'] = $values['page_depth'];
-    $this->settings['hero_title'] = $values['hero_title'];
-    $this->settings['hero_content'] = $values['hero_content'];
-    $this->settings['hero_padding'] = $values['hero_padding'];
-    $this->settings['hero_margin'] = $values['hero_margin'];
-    $this->settings['hero_round'] = $values['hero_round'];
-    $this->settings['hero_button_title'] = $values['hero_button_title'];
-    $this->settings['hero_button_url'] = $values['hero_button_url'];
-    $this->settings['hero_category'] = $values['hero_category'];
-    $this->settings['hero_background_url'] = $values['hero_background_url'];
-    $this->settings['hero_background_alt'] = $values['hero_background_alt'];
-    $this->settings['hero_background_title'] = $values['hero_background_title'];
-    $this->settings['hero_card_title'] = $values['hero_card_title'];
-    $this->settings['hero_card_content'] = $values['hero_card_content'];
-    $this->settings['hero_card_link_title'] = $values['hero_card_link_title'];
-    $this->settings['hero_card_link_url'] = $values['hero_card_link_url'];
+    // Save the things not handled by BlockText.
+    if (!empty($form_state['values']['image'])) {
+      $file = file_load($form_state['values']['image']);
+      if ($form_state['values']['image'] != $form['image']['#default_value']) {
+        // Record that the layout module is using this file. Also marks permanent.
+        // But only if the value has changed.
+        file_usage_add($file, 'layout', 'block', $file->fid);
+        if (!empty($form['image']['#default_value'])) {
+          // Decrement usage for replaced file.
+          $old_file = file_load($form['image']['#default_value']);
+          if ($old_file) {
+            file_usage_delete($old_file, 'layout', 'block', $old_file->fid);
+          }
+        }
+      }
+      // Store the filepath separately for use as inline background image.
+      $absolute_path = parse_url($GLOBALS['base_url'], PHP_URL_PATH) . '/';
+      $fileurl = file_create_url($file->uri);
+      $filepath = str_replace($GLOBALS['base_url'] . '/', $absolute_path, $fileurl);
+      $form_state['values']['image_path'] = $filepath;
+      $this->settings['image'] = $form_state['values']['image'];
+      $this->settings['image_path'] = $form_state['values']['image_path'];
+    }
+    else {
+      // No new file but an old one existed, decrement usage.
+      if (!empty($form['image']['#default_value'])) {
+        $old_file = file_load($form['image']['#default_value']);
+        if ($old_file) {
+          file_usage_delete($old_file, 'layout', 'block', $old_file->fid);
+        }
+      }
+      $this->settings['image'] = NULL;
+      $this->settings['image_path'] = NULL;
+    }
+
+    $this->settings['card_header'] = $values['card_header'];
+    $this->settings['card_title'] = $values['card_title'];
+    $this->settings['card_title_tag'] = $values['card_title_tag'];
+    $this->settings['card_content'] = $values['card_content'];
+    $this->settings['card_footer'] = $values['card_footer'];
+    $this->settings['card_padding'] = $values['card_padding'];
+    $this->settings['card_margin'] = $values['card_margin'];
+    $this->settings['card_round'] = $values['card_round'];
+    $this->settings['text_align'] = $values['text_align'];
   }
 
   /**
@@ -232,21 +231,16 @@ class Hero extends BootstrapBlocks {
   public function getContent() {
     return [
       '#theme' => 'hero',
-      '#hero_title' => $this->settings['hero_title'],
-      '#hero_content' => $this->settings['hero_content'],
-      '#hero_padding' => $this->settings['hero_padding'],
-      '#hero_margin' => $this->settings['hero_margin'],
-      '#hero_round' => $this->settings['hero_round'],
-      '#hero_button_title' => $this->settings['hero_button_title'],
-      '#hero_button_url' => $this->settings['hero_button_url'],
-      '#hero_category' => $this->settings['hero_category'],
-      '#hero_background_url' => $this->settings['hero_background_url'],
-      '#hero_background_alt' => $this->settings['hero_background_alt'],
-      '#hero_background_title' => $this->settings['hero_background_title'],
-      '#hero_card_title' => $this->settings['hero_card_title'],
-      '#hero_card_content' => $this->settings['hero_card_content'],
-      '#hero_card_link_title' => $this->settings['hero_card_link_title'],
-      '#hero_card_link_url' => $this->settings['hero_card_link_url'],
+      '#image_path' => $this->settings['image_path'],
+      '#card_header' => $this->settings['card_header'],
+      '#card_title' => $this->settings['card_title'],
+      '#card_title_tag' => $this->settings['card_title_tag'],
+      '#card_content' => $this->settings['card_content'],
+      '#card_footer' => $this->settings['card_footer'],
+      '#card_padding' => $this->settings['card_padding'],
+      '#card_margin' => $this->settings['card_margin'],
+      '#card_round' => $this->settings['card_round'],
+      '#text_align' => $this->settings['text_align'],
     ];
   }
 }
