@@ -27,7 +27,7 @@ class BootstrapBlock extends Block {
     $child = $children[$this->childDelta]['class'];
 
     $this->child_class = new $child();
-    $this->child_class->settings = $this->settings;
+    $this->child_class->settings = array_merge($this->child_class->settings, $this->settings);
   }
 
   /**

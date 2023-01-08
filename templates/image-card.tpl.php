@@ -1,29 +1,19 @@
-<div class="row">
-  <div class="col-12 col-lg-6">
-    <div class="card-wrapper" 
-         style="
-          <?php if (($card_padding > 0)) { ?>
- padding: <?php echo $card_padding; ?>px; <?php } ?>
- 
-          <?php if (($card_margin > 0)) { ?>
- margin:  <?php echo $card_margin; ?>px;  <?php } ?>
-">
-      <div class="card card-img no-after">
-        <div class="img-responsive-wrapper">
-          <div class="img-responsive">
-            <figure class="img-wrapper">
-              <img src="<?php echo $card_image_url; ?>" title="<?php echo $card_image_title; ?>" alt="<?php echo $card_image_alt; ?>">
-            </figure>
-          </div>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"><?php echo $card_title; ?></h5>
-          <p class="card-text"></p><a class="read-more" href="<?php echo $card_link_url; ?>"><span class="text"><?php echo $card_link_title; ?></span>
-            <svg class="icon">
-              <use xlink:href="./themes/custom/italiagov/assets/icons/sprite.svg#it-arrow-right"></use>
-            </svg></a>
-        </div>
-      </div>
-    </div>
+<div class="card rounded-<?php echo $card_round; ?> <?php echo $bblock_id; ?> m-<?php echo $card_margin; ?> p-<?php echo $card_padding; ?> <?php echo $text_align; ?>">
+  <?php if ($image_position == 'top'): ?>
+    <img src="<?php echo $image_path; ?>" class="card-img-top" alt="...">
+  <?php endif; ?>
+  <div class="card-body">
+    <?php if ($card_title): ?>
+      <<?php echo $card_title_tag; ?> class="card-title"><?php echo $card_title; ?></<?php echo $card_title_tag; ?>>
+    <?php endif; ?>
+    <div class="card-text"><?php echo $card_content; ?></div>
   </div>
+  <?php if ($card_footer): ?>
+    <div class="card-footer text-muted">
+      <?php echo $card_footer; ?>
+    </div>
+  <?php endif; ?>
+  <?php if ($image_position == 'bottom'): ?>
+    <img src="<?php echo $image_path; ?>" class="card-img-bottom" alt="...">
+  <?php endif; ?>
 </div>

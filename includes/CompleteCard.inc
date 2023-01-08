@@ -113,23 +113,7 @@ class CompleteCard extends BootstrapBlocks {
       '#title' => t('Card text:'),
       '#default_value' => isset($config['card_footer'])
         ? $config['card_footer']
-        : $card_footer,
-    ];
-
-    $form['card_link_title'] = [
-      '#type' => 'textfield',
-      '#title' => t('Link title:'),
-      '#default_value' => isset($config['card_link_title'])
-        ? $config['card_link_title']
-        : $card_link_title,
-    ];
-
-    $form['card_link_url'] = [
-      '#type' => 'textfield',
-      '#title' => t('Link URL:'),
-      '#default_value' => isset($config['card_link_url'])
-        ? $config['card_link_url']
-        : $card_link_url,
+        : '',
     ];
 
   }
