@@ -7,6 +7,7 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
   $base = array(
     'preprocess functions' => array('bootstrap_blocks_preprocess_bblock'),
     'variables' => array('bblock_id' => null),
+    'variables' => array('text_align' => null),
   );
   return array(
     'section' =>array(
@@ -21,6 +22,8 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'section_padding'    => null,
         'section_round'      => null,
         'section_text_color' => null, 
+        'bblock_id' => null, 
+        'text_align' => null, 
       ),
       'template' => 'templates/section',
     ) + $base,
@@ -37,6 +40,8 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'section_padding'    => null,
         'section_round'      => null,
         'section_text_color' => null, 
+        'bblock_id' => null, 
+        'text_align' => null, 
       ),
       'template' => 'templates/section-cards',
     ) + $base,
@@ -47,13 +52,16 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'tabs_margin'        => null,
         'always_open' => null,
         'tabs' => array(), 
+        'bblock_id' => null, 
+        'text_align' => null, 
       ),
       'template' => 'templates/accordion',
     ) + $base,
 
     'tabs' =>array(
       'variables' => array(
-        'bblock_id'             => null, 
+        'bblock_id' => null, 
+        'text_align' => null, 
         'tabs_padding'       => null,
         'tabs_margin'        => null,
         'link_style'        => null,
@@ -64,7 +72,8 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
 
     'tabs_vertical' =>array(
       'variables' => array(
-        'bblock_id'             => null, 
+        'bblock_id' => null, 
+        'text_align' => null, 
         'tabs_padding'       => null,
         'tabs_margin'        => null,
         'tabs'        => array(),
@@ -74,7 +83,8 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
 
     'tabs_card' =>array(
       'variables' => array(
-        'bblock_id'             => null,
+        'bblock_id' => null, 
+        'text_align' => null, 
         'tabs_padding'       => null,
         'tabs_margin'        => null,
         'first_tab_title'    => null,
@@ -102,6 +112,8 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_round'      => null, 
         'card_link_title' => null,
         'card_link_url'   => null,
+        'bblock_id' => null, 
+        'text_align' => null, 
       ),
       'template' => 'templates/card',
     ) + $base,
@@ -119,6 +131,8 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'first_card_link_url'    => null,
         'second_card_link_title' => null,
         'second_card_link_url'   => null,
+        'bblock_id' => null, 
+        'text_align' => null, 
       ),
       'template' => 'templates/two-cards',
     ) + $base,
@@ -133,21 +147,25 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_round'      => null, 
         'card_link_title' => null,
         'card_link_url'   => null,
+        'bblock_id' => null, 
+        'text_align' => null, 
       ),
       'template' => 'templates/big-card',
     ) + $base,
 
     'complete_card' =>array(
       'variables' => array(
-        'card_icon'       => null,
-        'card_icon_title' => null,
+        'card_header'      => null,
         'card_title'      => null,
+        'card_title_tag'      => null,
         'card_content'    => null,
+        'card_footer'    => null,
         'card_padding'    => null,
         'card_margin'     => null,
         'card_round'      => null, 
-        'card_link_title' => null,
-        'card_link_url'   => null,
+        'text_align'      => null, 
+        'bblock_id' => null, 
+        'text_align' => null, 
       ),
       'template' => 'templates/complete-card',
     ) + $base,
@@ -164,6 +182,8 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_tag_url'   => null,
         'card_signature' => null,
         'card_button'    => null,
+        'bblock_id' => null, 
+        'text_align' => null, 
       ),
       'template' => 'templates/action-card',
     ) + $base,
@@ -178,6 +198,8 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_margin'      => null,
         'card_link_title'  => null,
         'card_link_url'    => null,
+        'bblock_id' => null, 
+        'text_align' => null, 
       ),
       'template' => 'templates/image-card',
     ) + $base,
@@ -192,6 +214,8 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'card_margin'      => null,
         'card_link_title'  => null,
         'card_link_url'    => null,
+        'bblock_id' => null, 
+        'text_align' => null, 
         'card_date'        => null,
       ),
       'template' => 'templates/special-card',
@@ -214,6 +238,8 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'hero_card_content'     => null,
         'hero_card_link_title'  => null,
         'hero_card_link_url'    => null,
+        'bblock_id' => null, 
+        'text_align' => null, 
       ),
       'template' => 'templates/hero',
     ) + $base,
@@ -340,11 +366,23 @@ function bootstrap_blocks_add_tab_submit($form, &$form_state) {
  * AJAX callback to update the style settings within the block configure form.
  */
 function bootstrap_blocks_preprocess_bblock(&$variables) {
-    if (!empty($variables['bblock_id'])) {
-      $variables['bblock_id'] = strtolower(backdrop_clean_css_identifier($variables['bblock_id']));
-    }
-    else {
-      $variables['bblock_id'] = 'bblock-block';
-    }
+  if (!empty($variables['bblock_id'])) {
+    $variables['bblock_id'] = strtolower(backdrop_clean_css_identifier($variables['bblock_id']));
+  }
+  else {
+    $variables['bblock_id'] = 'bblock-block';
+  }
+
+  if ($variables['text_align'] == 'left') {
+    $variables['text_align'] = '';
+  }
+  elseif ($variables['text_align'] == 'right') {
+    $variables['text_align'] = 'text-end';
+  }
+  elseif ($variables['text_align'] == 'center') {
+    $variables['text_align'] = 'text-center';
+  }
+    
+  dpm($variables);
 
 }

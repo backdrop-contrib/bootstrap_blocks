@@ -15,6 +15,7 @@ class CompleteCard extends BootstrapBlocks {
   public function form(&$form, &$form_state) {
 
     $config = $this->settings;
+    $card_header = 'Morbi fermentum amet';
     $card_title = 'Morbi fermentum amet';
     $card_content =
       'Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.';
@@ -23,22 +24,12 @@ class CompleteCard extends BootstrapBlocks {
     $card_icon = 'it-card';
     $card_icon_title = 'Development';
 
-    $form['page_depth'] = [
-      '#type' => 'number',
-      '#title' => t('Page level (only in case of other languages):'),
-      '#description' => t(
-        'For example if /page/services, the service level is 2.'
-      ),
-      '#default_value' => isset($config['page_depth'])
-        ? $config['page_depth']
-        : 1,
-    ];
-
     $form['card_round'] = [
-      '#type' => 'number',
+      '#type' => 'select',
       '#title' => t('Card rounding:'),
+      '#options' => array(0, 1, 2, 3),
       '#description' => t(
-        'Enter any rounding for the card in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all edges.'
+        'Enter any rounding for the card border.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all edges.'
       ),
       '#default_value' => isset($config['card_round'])
         ? $config['card_round']
@@ -46,45 +37,49 @@ class CompleteCard extends BootstrapBlocks {
     ];
 
     $form['card_padding'] = [
-      '#type' => 'number',
-      '#title' => t('Card padding:'),
+      '#type' => 'select',
+      '#title' => t('Card padding'),
+      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5, 'auto')),
       '#description' => t(
         'Enter any padding for the card in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all edges.'
       ),
       '#default_value' => isset($config['card_padding'])
         ? $config['card_padding']
-        : 0,
+        : 3,
     ];
 
     $form['card_margin'] = [
-      '#type' => 'number',
-      '#title' => t('Card margin:'),
+      '#type' => 'select',
+      '#title' => t('Card margin'),
+      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5, 'auto')),
       '#description' => t(
         'Enter any margin for the card in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all borders.'
       ),
       '#default_value' => isset($config['card_margin'])
         ? $config['card_margin']
-        : 0,
+        : 3,
     ];
 
-    $form['card_icon'] = [
-      '#type' => 'textfield',
-      '#title' => t('Card icon:'),
-      '#description' => t(
-        'Enter the icon name for this card.<br>It must be one that Bootstrap Italia provides.'
+    $form['text_align'] = [
+      '#type' => 'select',
+      '#title' => t('Card text alignment'),
+      '#options' => array(
+        'left' => t('Left'),
+        'right' => t('Right'),
+        'center' => t('Center'),
       ),
-      '#default_value' => isset($config['card_icon'])
-        ? $config['card_icon']
-        : $card_icon,
+      '#default_value' => isset($config['text_align'])
+        ? $config['text_align']
+        : 'left',
     ];
 
-    $form['card_icon_title'] = [
+    $form['card_header'] = [
       '#type' => 'textfield',
-      '#title' => t('Title of the card icon:'),
-      '#description' => t('Enter the title of the icon for this card.'),
-      '#default_value' => isset($config['card_icon_title'])
-        ? $config['card_icon_title']
-        : $card_icon_title,
+      '#title' => t('Card header:'),
+      '#description' => t('Enter a header title for this card.'),
+      '#default_value' => isset($config['card_header'])
+        ? $config['card_header']
+        : $card_header,
     ];
 
     $form['card_title'] = [
@@ -96,12 +91,29 @@ class CompleteCard extends BootstrapBlocks {
         : $card_title,
     ];
 
+    $form['card_title_tag'] = [
+      '#type' => 'select',
+      '#options' => backdrop_map_assoc(array('h1', 'h2', 'h3', 'h4', 'h5', 'h6')),
+      '#title' => t('Card title tag'),
+      '#description' => t('Choose title tag size.'),
+      '#default_value' => isset($config['card_title_tag'])
+        ? $config['card_title_tag']
+        : 'h5',
+    ];
+
     $form['card_content'] = [
       '#type' => 'textarea',
       '#title' => t('Card text:'),
       '#default_value' => isset($config['card_content'])
         ? $config['card_content']
         : $card_content,
+    ];
+    $form['card_footer'] = [
+      '#type' => 'textarea',
+      '#title' => t('Card text:'),
+      '#default_value' => isset($config['card_footer'])
+        ? $config['card_footer']
+        : $card_footer,
     ];
 
     $form['card_link_title'] = [
@@ -131,18 +143,16 @@ class CompleteCard extends BootstrapBlocks {
     $config = $this->settings;
 
     $values = $form_state['values'];
-    $pageDepth = $values['page_depth'];
 
-    $this->settings['page_depth'] = $values['page_depth'];
-    $this->settings['card_icon'] = $values['card_icon'];
-    $this->settings['card_icon_title'] = $values['card_icon_title'];
+    $this->settings['card_header'] = $values['card_header'];
     $this->settings['card_title'] = $values['card_title'];
+    $this->settings['card_title_tag'] = $values['card_title_tag'];
     $this->settings['card_content'] = $values['card_content'];
+    $this->settings['card_footer'] = $values['card_footer'];
     $this->settings['card_padding'] = $values['card_padding'];
     $this->settings['card_margin'] = $values['card_margin'];
     $this->settings['card_round'] = $values['card_round'];
-    $this->settings['card_link_title'] = $values['card_link_title'];
-    $this->settings['card_link_url'] = $values['card_link_url'];
+    $this->settings['text_align'] = $values['text_align'];
   }
 
   /**
@@ -151,15 +161,15 @@ class CompleteCard extends BootstrapBlocks {
   public function getContent() {
     return [
       '#theme' => 'complete_card',
-      '#card_icon' => $this->settings['card_icon'],
-      '#card_icon_title' => $this->settings['card_icon_title'],
+      '#card_header' => $this->settings['card_header'],
       '#card_title' => $this->settings['card_title'],
+      '#card_title_tag' => $this->settings['card_title_tag'],
       '#card_content' => $this->settings['card_content'],
+      '#card_footer' => $this->settings['card_footer'],
       '#card_padding' => $this->settings['card_padding'],
       '#card_margin' => $this->settings['card_margin'],
       '#card_round' => $this->settings['card_round'],
-      '#card_link_title' => $this->settings['card_link_title'],
-      '#card_link_url' => $this->settings['card_link_url'],
+      '#text_align' => $this->settings['text_align'],
     ];
   }
 }
