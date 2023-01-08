@@ -76,6 +76,22 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
       'template' => 'templates/card-group',
     ) + $base,
 
+    'card_grid' =>array(
+      'variables' => array(
+        'card_columns'      => null,
+        'card_gutter'      => null,
+        'card_title_tag'      => null,
+        'card_padding'    => null,
+        'card_margin'     => null,
+        'card_round'      => null, 
+        'text_align'      => null, 
+        'bblock_id' => null, 
+        'text_align' => null, 
+        'cards' => array(), 
+      ),
+      'template' => 'templates/card-grid',
+    ) + $base,
+
     'image_card' =>array(
       'variables' => array(
         'image'      => null,
@@ -168,6 +184,11 @@ function bootstrap_blocks_get_children() {
       'description' => t('CardGroup.'),
       'class' => 'CardGroup',
       ],
+    'card_grid' => [
+      'info' => t('CardGrid'),
+      'description' => t('CardGrid.'),
+      'class' => 'CardGrid',
+      ],
   ];
 
   return $children;
@@ -237,6 +258,14 @@ function bootstrap_blocks_preprocess_bblock(&$variables) {
     $variables['text_align'] = 'text-center';
   }
     
-  dpm($variables);
+  if (isset($variables['card_columns'])) {
+    if ($variables['card_columns'] == 'auto') {
+      $variables['card_columns'] = '';
+    }
+    else {
+      $variables['card_columns'] = 'row-cols-1 row-cols-md-' . $variables['card_columns'];
+    }
+    
+  }
 
 }
