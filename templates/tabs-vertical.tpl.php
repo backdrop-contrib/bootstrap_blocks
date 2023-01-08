@@ -1,7 +1,4 @@
-<?php $tabs_padding = ($tabs_padding > 0) ? 'padding: ' . $tabs_padding . 'px': ''; ?>
-<?php $tabs_margin = ($tabs_margin > 0) ? 'margin: ' . $tabs_margin . 'px' : ''; ?>
-
-<div style="<?php echo $tabs_padding; ?> <?php echo $tabs_margin; ?>" class="<?php echo $bblock_id; ?> d-flex align-items-start border">
+<div class="<?php echo $bblock_id; ?> m-<?php echo $tabs_margin; ?> p-<?php echo $tabs_padding; ?> d-flex align-items-start border">
   
   <div class="nav nav-pills flex-column" id="<?php echo $bblock_id; ?>" role="tablist">
   <?php foreach ($tabs as $delta => $item): ?>

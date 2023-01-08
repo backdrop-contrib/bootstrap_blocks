@@ -1,8 +1,4 @@
-<?php $tabs_padding = ($tabs_padding > 0) ? 'padding: ' . $tabs_padding . 'px': ''; ?>
-<?php $tabs_margin = ($tabs_margin > 0) ? 'margin: ' . $tabs_margin . 'px' : ''; ?>
-<?php $bs_parent = ($always_open) ? '' : 'data-bs-parent="#' . $bblock_id . '"'; ?>
-
-<div style="<?php echo $tabs_padding; ?> <?php echo $tabs_margin; ?>" class="<?php echo $bblock_id; ?> border">
+<div class="<?php echo $bblock_id; ?> m-<?php echo $tabs_margin; ?> p-<?php echo $tabs_padding; ?> border">
   
   <div class="accordion accordion-flush" id="<?php echo $bblock_id; ?>">
     <?php foreach ($tabs as $delta => $item): ?>

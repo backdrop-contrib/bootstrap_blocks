@@ -262,7 +262,23 @@ function bootstrap_blocks_preprocess_bblock(&$variables) {
     else {
       $variables['card_columns'] = 'row-cols-1 row-cols-md-' . $variables['card_columns'];
     }
+  }
     
+  if (isset($variables['link_style'])) {
+    if ($variables['link_style'] == 'buttons') {
+      $variables['link_style_class'] = 'nav-pills';
+    }
+    else {
+      $variables['link_style_class'] = 'nav-tabs';
+    }
+  }
+    
+  if (!empty($variables['always_open'])) {
+    $variables['bs_parent'] = '';
+  }
+  else {
+    $variables['bs_parent'] = 'data-bs-parent="#' . $variables['bblock_id'] . '"';
   }
 
 }
+

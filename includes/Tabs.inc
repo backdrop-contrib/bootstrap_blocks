@@ -17,25 +17,27 @@ class Tabs extends BootstrapBlocks {
     $config = $this->settings;
 
     $form['tabs_padding'] = [
-      '#type' => 'number',
-      '#title' => t('Tabs section padding:'),
+      '#type' => 'select',
+      '#title' => t('Card padding'),
+      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5, 'auto')),
       '#description' => t(
-        'Enter any padding for the tabs section in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all borders. '
+        'Enter any padding for the card in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all edges.'
       ),
       '#default_value' => isset($config['tabs_padding'])
         ? $config['tabs_padding']
-        : 0,
+        : 3,
     ];
 
     $form['tabs_margin'] = [
-      '#type' => 'number',
-      '#title' => t('Margin of tabs section:'),
+      '#type' => 'select',
+      '#title' => t('Card margin'),
+      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5, 'auto')),
       '#description' => t(
-        'Enter any margin for the tabs section in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all edges. '
+        'Enter any margin for the card in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all borders.'
       ),
       '#default_value' => isset($config['tabs_margin'])
         ? $config['tabs_margin']
-        : 0,
+        : 3,
     ];
 
     $form['link_style'] = [
