@@ -84,7 +84,6 @@ class CardGroup extends BootstrapBlocks {
     elseif (isset($config['cards'])) {
       $cards = $form_state['cards'] = $config['cards'];
     }
-    dpm($this);
 
     $form['cards'] = [
       '#type' => 'container',
@@ -151,7 +150,6 @@ class CardGroup extends BootstrapBlocks {
     $config = $this->settings;
 
     $values = $form_state['values'];
-    dpm($values);
 
     $this->settings['card_padding'] = $values['card_padding'];
     $this->settings['card_margin'] = $values['card_margin'];

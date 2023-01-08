@@ -102,7 +102,6 @@ class CardGrid extends BootstrapBlocks {
     elseif (isset($config['cards'])) {
       $cards = $form_state['cards'] = $config['cards'];
     }
-    dpm($this);
 
     $form['cards'] = [
       '#type' => 'container',
@@ -169,7 +168,6 @@ class CardGrid extends BootstrapBlocks {
     $config = $this->settings;
 
     $values = $form_state['values'];
-    dpm($values);
 
     $this->settings['card_padding'] = $values['card_padding'];
     $this->settings['card_gutter'] = $values['card_gutter'];

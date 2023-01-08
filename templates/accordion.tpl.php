@@ -2,7 +2,7 @@
 <?php $tabs_margin = ($tabs_margin > 0) ? 'margin: ' . $tabs_margin . 'px' : ''; ?>
 <?php $bs_parent = ($always_open) ? '' : 'data-bs-parent="#' . $bblock_id . '"'; ?>
 
-<div style="<?php dpm($bs_parent); echo $tabs_padding; ?> <?php echo $tabs_margin; ?>" class="<?php echo $bblock_id; ?> border">
+<div style="<?php echo $tabs_padding; ?> <?php echo $tabs_margin; ?>" class="<?php echo $bblock_id; ?> border">
   
   <div class="accordion accordion-flush" id="<?php echo $bblock_id; ?>">
     <?php foreach ($tabs as $delta => $item): ?>

@@ -1,6 +1,6 @@
 <?php $tabs_padding = ($tabs_padding > 0) ? 'padding: ' . $tabs_padding . 'px': ''; ?>
 <?php $tabs_margin = ($tabs_margin > 0) ? 'margin: ' . $tabs_margin . 'px' : ''; ?>
-<?php dpm(get_defined_vars());  $link_style_class = ($link_style == 'buttons') ? 'nav-pills' : 'nav-tabs'; ?>
+<?php $link_style_class = ($link_style == 'buttons') ? 'nav-pills' : 'nav-tabs'; ?>
 
 <div style="<?php echo $tabs_padding; ?> <?php echo $tabs_margin; ?>" class="<?php echo $bblock_id; ?> border">
   

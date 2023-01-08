@@ -57,7 +57,6 @@ class Tabs extends BootstrapBlocks {
     elseif (isset($config['tabs'])) {
       $tabs = $form_state['tabs'] = $config['tabs'];
     }
-    dpm($this);
 
     $form['tabs'] = [
       '#type' => 'container',
@@ -104,7 +103,6 @@ class Tabs extends BootstrapBlocks {
     $config = $this->settings;
 
     $values = $form_state['values'];
-    dpm($values);
 
     $this->settings['tabs_padding'] = $values['tabs_padding'];
     $this->settings['tabs_margin'] = $values['tabs_margin'];

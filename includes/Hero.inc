@@ -26,7 +26,7 @@ class Hero extends BootstrapBlocks {
   public function form(&$form, &$form_state) {
 
     $config = $this->settings;
-    dpm($config);
+
     $card_header = 'Morbi fermentum amet';
     $card_title = 'Morbi fermentum amet';
     $card_content =

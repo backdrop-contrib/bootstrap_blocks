@@ -1,5 +1,5 @@
 <?php $tabs_padding = ($tabs_padding > 0) ? 'padding: ' . $tabs_padding . 'px': ''; ?>
-<?php dpm(get_defined_vars());  $tabs_margin = ($tabs_margin > 0) ? 'margin: ' . $tabs_margin . 'px' : ''; ?>
+<?php $tabs_margin = ($tabs_margin > 0) ? 'margin: ' . $tabs_margin . 'px' : ''; ?>
 
 <div style="<?php echo $tabs_padding; ?> <?php echo $tabs_margin; ?>" class="<?php echo $bblock_id; ?> d-flex align-items-start border">
   
