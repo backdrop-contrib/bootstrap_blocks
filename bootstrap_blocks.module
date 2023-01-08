@@ -10,42 +10,6 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
     'variables' => array('text_align' => null),
   );
   return array(
-    'section' =>array(
-      'variables' => array(
-        'section_background' => null,
-        'section_color'      => null,
-        'section_title'      => null,
-        'first_section'      => null,
-        'second_section'     => null,
-        'third_section'      => null,
-        'section_margin'     => null, 
-        'section_padding'    => null,
-        'section_round'      => null,
-        'section_text_color' => null, 
-        'bblock_id' => null, 
-        'text_align' => null, 
-      ),
-      'template' => 'templates/section',
-    ) + $base,
-
-    'section_cards' =>array(
-      'variables' => array(
-        'section_background' => null,
-        'section_color'      => null,
-        'section_title'      => null,
-        'first_section'      => null,
-        'second_section'     => null,
-        'third_section'      => null,
-        'section_margin'     => null, 
-        'section_padding'    => null,
-        'section_round'      => null,
-        'section_text_color' => null, 
-        'bblock_id' => null, 
-        'text_align' => null, 
-      ),
-      'template' => 'templates/section-cards',
-    ) + $base,
-
     'accordion' =>array(
       'variables' => array(
         'tabs_padding'       => null,
@@ -81,78 +45,6 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
       'template' => 'templates/tabs-vertical',
     ) + $base,
 
-    'tabs_card' =>array(
-      'variables' => array(
-        'bblock_id' => null, 
-        'text_align' => null, 
-        'tabs_padding'       => null,
-        'tabs_margin'        => null,
-        'first_tab_title'    => null,
-        'first_tab_active'   => null, 
-        'second_tab_title'   => null,
-        'second_tab_active'  => null,
-        'third_tab_title'    => null,
-        'third_tab_active'   => null,
-        'first_tab_content'  => null,
-        'second_tab_content' => null, 
-        'third_tab_content'  => null,
-        'first_tab_icon'     => null, 
-        'second_tab_icon'    => null, 
-        'third_tab_icon'     => null,
-      ),
-      'template' => 'templates/tabs-card',
-    ) + $base,
-
-    'card' =>array(
-      'variables' => array(
-        'card_title'      => null,
-        'card_content'    => null,
-        'card_padding'    => null,
-        'card_margin'     => null,
-        'card_round'      => null, 
-        'card_link_title' => null,
-        'card_link_url'   => null,
-        'bblock_id' => null, 
-        'text_align' => null, 
-      ),
-      'template' => 'templates/card',
-    ) + $base,
-
-    'two_cards' =>array(
-      'variables' => array(
-        'first_card_title'       => null,
-        'first_card_content'     => null,
-        'second_card_title'      => null,
-        'second_card_content'    => null,
-        'card_padding'           => null,
-        'card_margin'            => null,
-        'card_round'             => null, 
-        'first_card_link_title'  => null,
-        'first_card_link_url'    => null,
-        'second_card_link_title' => null,
-        'second_card_link_url'   => null,
-        'bblock_id' => null, 
-        'text_align' => null, 
-      ),
-      'template' => 'templates/two-cards',
-    ) + $base,
-
-    'big_card' =>array(
-      'variables' => array(
-        'card_icon'       => null,
-        'card_title'      => null,
-        'card_content'    => null,
-        'card_padding'    => null,
-        'card_margin'     => null,
-        'card_round'      => null, 
-        'card_link_title' => null,
-        'card_link_url'   => null,
-        'bblock_id' => null, 
-        'text_align' => null, 
-      ),
-      'template' => 'templates/big-card',
-    ) + $base,
-
     'complete_card' =>array(
       'variables' => array(
         'card_header'      => null,
@@ -168,24 +60,6 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
         'text_align' => null, 
       ),
       'template' => 'templates/complete-card',
-    ) + $base,
-
-    'action_card' =>array(
-      'variables' => array(
-        'card_date'      => null,
-        'card_tag'       => null,
-        'card_title'     => null,
-        'card_content'   => null,
-        'card_padding'   => null,
-        'card_margin'    => null,
-        'card_round'     => null, 
-        'card_tag_url'   => null,
-        'card_signature' => null,
-        'card_button'    => null,
-        'bblock_id' => null, 
-        'text_align' => null, 
-      ),
-      'template' => 'templates/action-card',
     ) + $base,
 
     'image_card' =>array(
@@ -207,23 +81,6 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
       'template' => 'templates/image-card',
     ) + $base,
     
-    'special_card' =>array(
-      'variables' => array(
-        'card_image_url'   => null,
-        'card_image_alt'   => null, 
-        'card_image_title' => null,
-        'card_title'       => null,
-        'card_padding'     => null,
-        'card_margin'      => null,
-        'card_link_title'  => null,
-        'card_link_url'    => null,
-        'bblock_id' => null, 
-        'text_align' => null, 
-        'card_date'        => null,
-      ),
-      'template' => 'templates/special-card',
-    ) + $base,
-
     'hero' =>array(
       'variables' => array(
         'hero_title'            => null,
@@ -267,21 +124,6 @@ function bootstrap_blocks_get_children() {
       'description' => t('Accordion.'),
       'class' => 'Accordion',
       ],
-    'action_card' => [
-      'info' => t('ActionCard'),
-      'description' => t('ActionCard.'),
-      'class' => 'ActionCard',
-      ],
-    'big_card' => [
-      'info' => t('BigCard'),
-      'description' => t('BigCard.'),
-      'class' => 'BigCard',
-      ],
-    'card' => [
-      'info' => t('Card'),
-      'description' => t('Card.'),
-      'class' => 'Card',
-      ],
     'complete_card' => [
       'info' => t('CompleteCard'),
       'description' => t('CompleteCard.'),
@@ -297,40 +139,15 @@ function bootstrap_blocks_get_children() {
       'description' => t('ImageCard'),
       'class' => 'ImageCard',
       ],
-    'section' => [
-      'info' => t('Section'),
-      'description' => t('Section.'),
-      'class' => 'Section',
-      ],
-    'section_cards' => [
-      'info' => t('SectionCards'),
-      'description' => t('SectionCards.'),
-      'class' => 'SectionCards',
-      ],
-    'special_card' => [
-      'info' => t('SpecialCard'),
-      'description' => t('SpecialCard.'),
-      'class' => 'SpecialCard',
-      ],
     'tabs' => [
       'info' => t('Tabs'),
       'description' => t('Displays.'),
       'class' => 'Tabs',
       ],
-    'tabs_card' => [
-      'info' => t('TabsCard'),
-      'description' => t('TabsCard.'),
-      'class' => 'TabsCard',
-      ],
     'tabs_vertical' => [
       'info' => t('TabsVertical'),
       'description' => t('Displays.'),
       'class' => 'TabsVertical',
-      ],
-    'two_cards' => [
-      'info' => t('TwoCards'),
-      'description' => t('Displays.'),
-      'class' => 'TwoCards',
       ],
   ];
 
