@@ -26,11 +26,8 @@ class CompleteCard extends BootstrapBlocks {
 
     $form['card_round'] = [
       '#type' => 'select',
-      '#title' => t('Card rounding:'),
+      '#title' => t('Card border rounding:'),
       '#options' => array(0, 1, 2, 3),
-      '#description' => t(
-        'Enter any rounding for the card border.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all edges.'
-      ),
       '#default_value' => isset($config['card_round'])
         ? $config['card_round']
         : 0,
@@ -39,10 +36,7 @@ class CompleteCard extends BootstrapBlocks {
     $form['card_padding'] = [
       '#type' => 'select',
       '#title' => t('Card padding'),
-      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5, 'auto')),
-      '#description' => t(
-        'Enter any padding for the card in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all edges.'
-      ),
+      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5)),
       '#default_value' => isset($config['card_padding'])
         ? $config['card_padding']
         : 3,
@@ -51,10 +45,7 @@ class CompleteCard extends BootstrapBlocks {
     $form['card_margin'] = [
       '#type' => 'select',
       '#title' => t('Card margin'),
-      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5, 'auto')),
-      '#description' => t(
-        'Enter any margin for the card in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all borders.'
-      ),
+      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5)),
       '#default_value' => isset($config['card_margin'])
         ? $config['card_margin']
         : 3,
@@ -76,7 +67,6 @@ class CompleteCard extends BootstrapBlocks {
     $form['card_header'] = [
       '#type' => 'textfield',
       '#title' => t('Card header:'),
-      '#description' => t('Enter a header title for this card.'),
       '#default_value' => isset($config['card_header'])
         ? $config['card_header']
         : $card_header,
@@ -85,7 +75,6 @@ class CompleteCard extends BootstrapBlocks {
     $form['card_title'] = [
       '#type' => 'textfield',
       '#title' => t('Card title:'),
-      '#description' => t('Enter a title for this card.'),
       '#default_value' => isset($config['card_title'])
         ? $config['card_title']
         : $card_title,
@@ -95,7 +84,6 @@ class CompleteCard extends BootstrapBlocks {
       '#type' => 'select',
       '#options' => backdrop_map_assoc(array('h1', 'h2', 'h3', 'h4', 'h5', 'h6')),
       '#title' => t('Card title tag'),
-      '#description' => t('Choose title tag size.'),
       '#default_value' => isset($config['card_title_tag'])
         ? $config['card_title_tag']
         : 'h5',

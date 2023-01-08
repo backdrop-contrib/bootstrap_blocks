@@ -18,11 +18,8 @@ class Tabs extends BootstrapBlocks {
 
     $form['tabs_padding'] = [
       '#type' => 'select',
-      '#title' => t('Card padding'),
-      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5, 'auto')),
-      '#description' => t(
-        'Enter any padding for the card in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all edges.'
-      ),
+      '#title' => t('Block padding'),
+      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5)),
       '#default_value' => isset($config['tabs_padding'])
         ? $config['tabs_padding']
         : 3,
@@ -30,11 +27,8 @@ class Tabs extends BootstrapBlocks {
 
     $form['tabs_margin'] = [
       '#type' => 'select',
-      '#title' => t('Card margin'),
-      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5, 'auto')),
-      '#description' => t(
-        'Enter any margin for the card in px.<br>If it is equal to 0 it will not be taken into consideration.<br>Furthermore it will be applied to all borders.'
-      ),
+      '#title' => t('Block margin'),
+      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5)),
       '#default_value' => isset($config['tabs_margin'])
         ? $config['tabs_margin']
         : 3,

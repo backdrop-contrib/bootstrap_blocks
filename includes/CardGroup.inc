@@ -39,7 +39,7 @@ class CardGroup extends BootstrapBlocks {
     $form['card_padding'] = [
       '#type' => 'select',
       '#title' => t('Card paddings'),
-      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5, 'auto')),
+      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5)),
       '#default_value' => isset($config['card_padding'])
         ? $config['card_padding']
         : 3,
@@ -48,7 +48,7 @@ class CardGroup extends BootstrapBlocks {
     $form['card_margin'] = [
       '#type' => 'select',
       '#title' => t('Card group margin'),
-      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5, 'auto')),
+      '#options' => backdrop_map_assoc(array('0', 1, 2, 3, 4, 5)),
       '#default_value' => isset($config['card_margin'])
         ? $config['card_margin']
         : 3,
