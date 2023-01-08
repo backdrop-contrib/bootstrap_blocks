@@ -15,14 +15,6 @@ class CompleteCard extends BootstrapBlocks {
   public function form(&$form, &$form_state) {
 
     $config = $this->settings;
-    $card_header = 'Morbi fermentum amet';
-    $card_title = 'Morbi fermentum amet';
-    $card_content =
-      'Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.';
-    $card_link_title = 'Read more';
-    $card_link_url = '#';
-    $card_icon = 'it-card';
-    $card_icon_title = 'Development';
 
     $form['card_round'] = [
       '#type' => 'select',
@@ -69,7 +61,7 @@ class CompleteCard extends BootstrapBlocks {
       '#title' => t('Card header:'),
       '#default_value' => isset($config['card_header'])
         ? $config['card_header']
-        : $card_header,
+        : '',
     ];
 
     $form['card_title'] = [
@@ -77,7 +69,7 @@ class CompleteCard extends BootstrapBlocks {
       '#title' => t('Card title:'),
       '#default_value' => isset($config['card_title'])
         ? $config['card_title']
-        : $card_title,
+        : '',
     ];
 
     $form['card_title_tag'] = [
@@ -94,7 +86,7 @@ class CompleteCard extends BootstrapBlocks {
       '#title' => t('Card text:'),
       '#default_value' => isset($config['card_content'])
         ? $config['card_content']
-        : $card_content,
+        : '',
     ];
     $form['card_footer'] = [
       '#type' => 'textarea',

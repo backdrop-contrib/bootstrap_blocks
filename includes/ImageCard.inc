@@ -27,15 +27,6 @@ class ImageCard extends BootstrapBlocks {
 
     $config = $this->settings;
 
-    $card_header = 'Morbi fermentum amet';
-    $card_title = 'Morbi fermentum amet';
-    $card_content =
-      'Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Dictum sit amet justo donec enim diam vulputate ut. Eu nisl nunc mi ipsum faucibus.';
-    $card_link_title = 'Read more';
-    $card_link_url = '#';
-    $card_icon = 'it-card';
-    $card_icon_title = 'Development';
-
     $form['card_round'] = [
       '#type' => 'select',
       '#title' => t('Card border rounding:'),
@@ -120,7 +111,7 @@ class ImageCard extends BootstrapBlocks {
       '#title' => t('Card title:'),
       '#default_value' => isset($config['card_title'])
         ? $config['card_title']
-        : $card_title,
+        : '',
     ];
 
     $form['card_title_tag'] = [
@@ -137,7 +128,7 @@ class ImageCard extends BootstrapBlocks {
       '#title' => t('Card text:'),
       '#default_value' => isset($config['card_content'])
         ? $config['card_content']
-        : $card_content,
+        : '',
     ];
     $form['card_footer'] = [
       '#type' => 'textarea',
