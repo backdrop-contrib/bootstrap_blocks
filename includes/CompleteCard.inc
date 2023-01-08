@@ -110,7 +110,7 @@ class CompleteCard extends BootstrapBlocks {
     ];
     $form['card_footer'] = [
       '#type' => 'textarea',
-      '#title' => t('Card text:'),
+      '#title' => t('Card footer:'),
       '#default_value' => isset($config['card_footer'])
         ? $config['card_footer']
         : '',

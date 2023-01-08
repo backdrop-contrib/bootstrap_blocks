@@ -62,6 +62,20 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
       'template' => 'templates/complete-card',
     ) + $base,
 
+    'card_group' =>array(
+      'variables' => array(
+        'card_title_tag'      => null,
+        'card_padding'    => null,
+        'card_margin'     => null,
+        'card_round'      => null, 
+        'text_align'      => null, 
+        'bblock_id' => null, 
+        'text_align' => null, 
+        'cards' => array(), 
+      ),
+      'template' => 'templates/card-group',
+    ) + $base,
+
     'image_card' =>array(
       'variables' => array(
         'image'      => null,
@@ -149,6 +163,11 @@ function bootstrap_blocks_get_children() {
       'description' => t('Displays.'),
       'class' => 'TabsVertical',
       ],
+    'card_group' => [
+      'info' => t('CardGroup'),
+      'description' => t('CardGroup.'),
+      'class' => 'CardGroup',
+      ],
   ];
 
   return $children;
@@ -177,8 +196,23 @@ function bootstrap_blocks_add_tab_ajax($form, $form_state) {
 /**
  * AJAX callback to update the style settings within the block configure form.
  */
+function bootstrap_blocks_add_card_ajax($form, $form_state) {
+  return $form['cards'];
+}
+
+/**
+ * AJAX callback to update the style settings within the block configure form.
+ */
 function bootstrap_blocks_add_tab_submit($form, &$form_state) {
   $form_state['tabs'][] = ['title' => '', 'content' => ''];
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * AJAX callback to update the style settings within the block configure form.
+ */
+function bootstrap_blocks_add_card_submit($form, &$form_state) {
+  $form_state['cards'][] = ['card_title' => '', 'card_content' => '', 'card_header' => '', 'card_footer' => ''];
   $form_state['rebuild'] = TRUE;
 }
 
