@@ -111,6 +111,25 @@ function bootstrap_blocks_theme($existing, $type, $theme, $path) {
       'template' => 'templates/image-card',
     ) + $base,
     
+    'image_horizontal_card' =>array(
+      'variables' => array(
+        'image'      => null,
+        'image_path'      => null,
+        'card_title'      => null,
+        'card_title_tag'      => null,
+        'card_content'    => null,
+        'card_footer'    => null,
+        'card_padding'    => null,
+        'card_margin'     => null,
+        'card_round'      => null, 
+        'text_align'      => null, 
+        'bblock_id' => null, 
+        'text_align' => null, 
+        'image_position' => null, 
+      ),
+      'template' => 'templates/image-horizontal-card',
+    ) + $base,
+    
     'hero' =>array(
       'variables' => array(
         'image'      => null,

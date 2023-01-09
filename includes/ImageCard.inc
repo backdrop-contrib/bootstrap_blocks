@@ -73,6 +73,8 @@ class ImageCard extends BootstrapBlocks {
       '#options' => array(
         'top' => t('Top'),
         'bottom' => t('Bottom'),
+        'left' => t('Left'),
+        'right' => t('Right'),
       ),
       '#default_value' => isset($config['image_position'])
         ? $config['image_position']
@@ -212,8 +214,14 @@ class ImageCard extends BootstrapBlocks {
    * {@inheritdoc}
    */
   public function getContent() {
+    if ($this->settings['image_position'] == 'top' || $this->settings['image_position'] == 'bottom') {
+      $theme = 'image_card';
+    }
+    else {
+      $theme = 'image_horizontal_card';
+    }
     return [
-      '#theme' => 'image_card',
+      '#theme' => $theme,
       '#image_path' => $this->settings['image_path'],
       '#card_title' => $this->settings['card_title'],
       '#card_title_tag' => $this->settings['card_title_tag'],
