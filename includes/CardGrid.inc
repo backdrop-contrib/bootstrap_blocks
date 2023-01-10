@@ -109,32 +109,32 @@ class CardGrid extends BootstrapBlocks {
       $form['cards']['card' . $index]['card_header'] = [
         '#type' => 'textfield',
         '#title' => t('Card header:'),
-        '#default_value' => isset($config['card_header'])
-          ? $config['card_header']
+        '#default_value' => isset($card['card_header'])
+          ? $card['card_header']
           : '',
       ];
 
       $form['cards']['card' . $index]['card_title'] = [
         '#type' => 'textfield',
         '#title' => t('Card title:'),
-        '#default_value' => isset($config['card_title'])
-          ? $config['card_title']
+        '#default_value' => isset($card['card_title'])
+          ? $card['card_title']
           : '',
       ];
       $form['cards']['card' . $index]['card_content'] = [
         '#type' => 'textarea',
         '#rows' => 3,
         '#title' => t('Card text:'),
-        '#default_value' => isset($config['card_content'])
-          ? $config['card_content']
+        '#default_value' => isset($card['card_content'])
+          ? $card['card_content']
           : '',
       ];
       $form['cards']['card' . $index]['card_footer'] = [
         '#type' => 'textarea',
         '#rows' => 3,
         '#title' => t('Card footer'),
-        '#default_value' => isset($config['card_footer'])
-          ? $config['card_footer']
+        '#default_value' => isset($card['card_footer'])
+          ? $card['card_footer']
           : '',
       ];
 
