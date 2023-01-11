@@ -52,7 +52,6 @@ in your public files folder.
 For example:
 - `url::http://remote-site.com/image-path.image.png` will display the image
 from that URL.
-URL
 - `url::image-path/image.png` will work if there is such an image at that path
 in the public files folder of your installation.
 
