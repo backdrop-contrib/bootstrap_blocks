@@ -41,7 +41,21 @@ The tabs/cards forms provide fields for:
   - Content
 - Footer
 
-Image cards allow image upload within the form.
+Single image cards allow image upload within the form. 
+
+To create an image card
+within a card group, the URL to the image can be types into the Card Header
+field using the prefix `url::`. This will render an image at that URL if it is
+full path (for example with `http://` prefixed) or otherwise, the image must be
+in your public files folder.
+
+For example:
+- `url::http://remote-site.com/image-path.image.png` will display the image
+from that URL.
+URL
+- `url::image-path/image.png` will work if there is such an image at that path
+in the public files folder of your installation.
+
 
       
 LICENSE

@@ -298,6 +298,23 @@ function bootstrap_blocks_preprocess_bblock(&$variables) {
   else {
     $variables['bs_parent'] = 'data-bs-parent="#' . $variables['bblock_id'] . '"';
   }
+  if ($variables['theme_hook_original'] == 'card_grid' || $variables['theme_hook_original'] == 'card_group') {
+    foreach ($variables['cards'] as $index => $card) {
+      $variables['cards'][$index]['image_url'] = FALSE;
+      $url = explode('url::', $card['card_header']);
+      if (isset($url[1]) && empty($url[0]) && valid_url($url[1])) {
+        $variables['cards'][$index]['image_url'] = TRUE;
+        // We assume if the scheme is set this is a full absolute path.
+        if (parse_url($url[1], PHP_URL_SCHEME)) {
+          $variables['cards'][$index]['card_header'] = $url[1];
+        }
+        // Else this is will need to be a path relative to the public folder.
+        else {
+          $variables['cards'][$index]['card_header'] = file_create_url(file_build_uri($url[1]));
+        }
+      }
+    }
+  }
 
 }
 
